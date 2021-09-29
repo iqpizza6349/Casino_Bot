@@ -1,6 +1,7 @@
 package com.tistory.iqpizza6349.command;
 
 import com.tistory.iqpizza6349.command.commands.*;
+import com.tistory.iqpizza6349.command.commands.music.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import javax.annotation.Nullable;
@@ -22,6 +23,13 @@ public class CommandManager {
         addCommand(new WebhookCommand());   // 웹 훅
 
         addCommand(new SetPrefixCommand()); // 커스텀 prefix
+
+        // TODO 추후 MusicCommand 로 한 번에 묶기
+        addCommand(new JoinCommand());  // 음악 봇 참가 명령어
+        addCommand(new PlayCommand());
+        addCommand(new StopCommand());
+        addCommand(new SkipCommand());
+        addCommand(new NowPlayingCommand());
     }
 
     private void addCommand(ICommand cmd) {

@@ -37,11 +37,6 @@
         <dependency>
             <groupId>club.minnced</groupId>
             <artifactId>discord-webhooks</artifactId>
-            <version>0.1.8</version>
-        </dependency>
-        <dependency>
-            <groupId>club.minnced</groupId>
-            <artifactId>discord-webhooks</artifactId>
             <version>0.5.8</version>
         </dependency>
         <dependency>
@@ -85,16 +80,6 @@
             <id>jfrog-duncte123</id>
             <name>jfrog-duncte123</name>
             <url>https://duncte123.jfrog.io/artifactory/maven</url>
-        </repository>
-        <repository>
-            <id>jfrog-duncte123</id>
-            <name>jfrog-duncte123</name>
-            <url>https://duncte123.jfrog.io/artifactory/maven</url>
-        </repository>
-        <repository>
-            <name>jcenter</name>
-            <id>bintray-jcenter</id>
-            <url>https://jcenter.bintray.com</url>
         </repository>
     </repositories>
 

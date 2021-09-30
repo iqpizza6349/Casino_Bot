@@ -51,6 +51,7 @@ public class PlayerManager {
                         .append(audioTrack.getInfo().title)
                         .append("` by `")
                         .append(audioTrack.getInfo().author)
+                        .append("`")
                         .queue();
             }
 
@@ -62,6 +63,7 @@ public class PlayerManager {
                         .append(String.valueOf(tracks.size()))
                         .append("` tracks from playlist `")
                         .append(audioPlaylist.getName())
+                        .append("`")
                         .queue();
 
                 for (final AudioTrack track : tracks) {

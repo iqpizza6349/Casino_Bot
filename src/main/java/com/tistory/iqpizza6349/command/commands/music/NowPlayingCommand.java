@@ -10,7 +10,9 @@ import com.tistory.iqpizza6349.lavaplayer.GuildMusicManager;
 import com.tistory.iqpizza6349.lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.requests.restaction.MessageAction;
 
 public class NowPlayingCommand implements ICommand {
 
@@ -50,7 +52,6 @@ public class NowPlayingCommand implements ICommand {
         }
 
         final AudioTrackInfo trackInfo = track.getInfo();
-
         textChannel.sendMessageFormat("Now playing `%s` by `%s` (link: <%s>)", trackInfo.title, trackInfo.author, trackInfo.uri).queue();
     }
 

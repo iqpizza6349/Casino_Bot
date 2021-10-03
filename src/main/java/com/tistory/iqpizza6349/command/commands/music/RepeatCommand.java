@@ -4,11 +4,16 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.tistory.iqpizza6349.Config;
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
+import com.tistory.iqpizza6349.database.MySQLDatabase;
 import com.tistory.iqpizza6349.lavaplayer.GuildMusicManager;
 import com.tistory.iqpizza6349.lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class RepeatCommand implements ICommand {
 
@@ -45,6 +50,7 @@ public class RepeatCommand implements ICommand {
         final boolean newRepeating = !musicManager.scheduler.repeating;
 
         musicManager.scheduler.repeating = newRepeating;
+        setRepeat(ctx.getGuild().getIdLong(), newRepeating);
 
         textChannel.sendMessageFormat("The player has been set to **%s**", newRepeating ? "loop Enable" : "loop Disable").queue();
     }
@@ -59,4 +65,51 @@ public class RepeatCommand implements ICommand {
         return "Loops the current song\n" +
                 "Usage: `" + Config.PREFIX + "loop`";
     }
+
+    public static void setRepeat(long guildId, boolean isRepeat) {
+        int repeatValue;
+        if (isRepeat)
+            repeatValue = 1;
+        else
+            repeatValue = 0;
+        try (final PreparedStatement preparedStatement = MySQLDatabase.getConnection()
+                .prepareStatement("UPDATE music SET `repeat` = ? WHERE guild_id = ?")) {
+
+            preparedStatement.setString(1, String.valueOf(repeatValue));
+            preparedStatement.setString(2, String.valueOf(guildId));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean getRepeat(long guildId) {
+        try (final PreparedStatement preparedStatement = MySQLDatabase
+                .getConnection()
+                .prepareStatement("SELECT `repeat` FROM music WHERE guild_id = ?")) {
+
+            preparedStatement.setString(1, String.valueOf(guildId));
+
+            try (final ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getBoolean("repeat");
+                }
+            }
+
+            try (final PreparedStatement insertStatement = MySQLDatabase
+                    .getConnection()
+                    .prepareStatement("INSERT INTO music(guild_id) VALUES(?) ")) {
+
+                insertStatement.setString(1, String.valueOf(guildId));
+
+                insertStatement.execute();
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 }

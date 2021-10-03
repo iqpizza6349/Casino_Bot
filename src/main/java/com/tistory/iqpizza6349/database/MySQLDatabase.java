@@ -25,10 +25,11 @@ public class MySQLDatabase {
             ");");
 
             statement.execute("CREATE TABLE IF NOT EXISTS `music` (" +
-                  "`guild_id` INTEGER PRIMARY KEY," +
+                  "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
+                  "`guild_id` VARCHAR(20) NOT NULL," +
                   "`current_song` VARCHAR(255)," +
                   "`queue` TEXT," +
-                  "`repeat` BOOLEAN," +
+                  "`repeat` BOOLEAN NOT NULL DEFAULT FALSE ," +
                   "`count` INT(40) NOT NULL DEFAULT 0" +
             ");");
             LOGGER.info("initialized mysql connected!");

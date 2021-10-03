@@ -3,6 +3,7 @@ package com.tistory.iqpizza6349.command.commands.music;
 import com.tistory.iqpizza6349.Config;
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
+import com.tistory.iqpizza6349.database.MySQLDatabase;
 import com.tistory.iqpizza6349.lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
@@ -10,6 +11,9 @@ import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class PlayCommand implements ICommand {
 
@@ -45,6 +49,12 @@ public class PlayCommand implements ICommand {
             return;
         }
 
+        if (getQueueCount(ctx.getGuild().getIdLong()) >= 20) {
+            textChannel.sendMessage("The maximum music cue is 20.\n" +
+                    "Please wait until the current song ends!").queue();
+            return;
+        }
+
         String link = String.join(" ", ctx.getStrings());
 
         if (!isUrl(link)) {
@@ -74,5 +84,27 @@ public class PlayCommand implements ICommand {
             return false;
         }
     }
+
+    public static int getQueueCount(long guildId) {
+        try (final PreparedStatement preparedStatement = MySQLDatabase
+                .getConnection()
+                .prepareStatement("SELECT count FROM music WHERE guild_id = ?")) {
+
+            preparedStatement.setString(1, String.valueOf(guildId));
+
+            try (final ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("count");
+                }
+            }
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.tistory.iqpizza6349.command;
 
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.tistory.iqpizza6349.command.commands.*;
 import com.tistory.iqpizza6349.command.commands.music.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -14,13 +15,13 @@ public class CommandManager {
 
     private final List<ICommand> commandList = new ArrayList<>();
 
-    public CommandManager() {
+    public CommandManager(EventWaiter waiter) {
         addCommand(new PingCommand());  // 핑 명령어
         addCommand(new HelpCommand(this)); // 명령어 도움말
         addCommand(new PasteCommand()); // 일반적인 코드 전달 시, 디코로 편하게 보내기 위한 명령어
         addCommand(new HasteCommand()); // HTML 코드 전달 시, 디코로 편하게 보내기 위한 명령어
         addCommand(new KickCommand());  // 멤버 추방
-        addCommand(new WebhookCommand());   // 웹 훅
+        //addCommand(new WebhookCommand());   // 웹 훅
 
         addCommand(new SetPrefixCommand()); // 커스텀 prefix
 
@@ -30,6 +31,8 @@ public class CommandManager {
         addCommand(new StopCommand());
         addCommand(new SkipCommand());
         addCommand(new NowPlayingCommand());
+
+        addCommand(new EventWaiterCommand(waiter));
     }
 
     private void addCommand(ICommand cmd) {

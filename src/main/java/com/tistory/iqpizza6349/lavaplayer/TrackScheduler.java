@@ -33,9 +33,6 @@ public class TrackScheduler extends AudioEventAdapter {
                 preparedStatement.setString(2, String.valueOf(guildId));
 
                 preparedStatement.executeUpdate();
-                System.out.println("queue 초기화 성공");
-
-                // TODO 큐에 넣을 때 count도 넣기
 
                 try (final PreparedStatement updateStatement = MySQLDatabase
                         .getConnection()
@@ -53,7 +50,6 @@ public class TrackScheduler extends AudioEventAdapter {
                     updateStatement.setString(2, String.valueOf(guildId));
 
                     updateStatement.executeUpdate();
-                    System.out.println("queue 값 변경 성공");
                 }
 
             } catch (SQLException | ClassNotFoundException e) {

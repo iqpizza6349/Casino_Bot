@@ -24,7 +24,6 @@ public class CommandManager {
 
         addCommand(new SetPrefixCommand()); // 커스텀 prefix
 
-        // TODO 추후 MusicCommand 로 한 번에 묶기
         addCommand(new JoinCommand());  // 음악 봇 참가 명령어
         addCommand(new PlayCommand());
         addCommand(new StopCommand());

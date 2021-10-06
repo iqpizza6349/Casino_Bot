@@ -22,7 +22,27 @@ public class MySQLDatabase {
                     "id INTEGER PRIMARY KEY AUTO_INCREMENT," +
                     "guild_id VARCHAR(20) NOT NULL," +
                     "prefix VARCHAR(255) NOT NULL DEFAULT '" + defaultPrefix + "'" +
-                    ");");
+            ");");
+
+            statement.execute("CREATE TABLE IF NOT EXISTS `music` (" +
+                  "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
+                  "`guild_id` VARCHAR(20) NOT NULL," +
+                  "`current_song` VARCHAR(255)," +
+                  "`queue` TEXT," +
+                  "`repeat` BOOLEAN NOT NULL DEFAULT FALSE ," +
+                  "`count` INT(40) NOT NULL DEFAULT 0" +
+            ");");
+
+            statement.execute("CREATE TABLE IF NOT EXISTS `user_info` (" +
+                  "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
+                  "`user_id` VARCHAR(20) NOT NULL, " +
+                  "`money` INT(11) NOT NULL DEFAULT 3000," +
+                  "`level` INT(11) NOT NULL DEFAULT 1," +
+                  "`bankruptcy` BOOLEAN NOT NULL DEFAULT FALSE ," +
+                  "`stock` TEXT," +
+                  "`web_hook_url` VARCHAR(255)," +
+                  "`sword` VARCHAR(255)" +
+            ");");
             LOGGER.info("initialized mysql connected!");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -32,7 +52,7 @@ public class MySQLDatabase {
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
         Connection connection = null;
 
-        String url = "";
+        String url = "jdbc:mysql://localhost:3306/JDBC?serverTimezone=UTC";
         String name = Config.USER_NAME;
         String pwd = Config.USER_PASSWORD;
         Class.forName("com.mysql.cj.jdbc.Driver");

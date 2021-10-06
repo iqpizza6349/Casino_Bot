@@ -1,20 +1,18 @@
 package com.tistory.iqpizza6349.command.commands.music;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
-import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
-import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import com.tistory.iqpizza6349.Config;
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
 import com.tistory.iqpizza6349.lavaplayer.GuildMusicManager;
 import com.tistory.iqpizza6349.lavaplayer.PlayerManager;
+import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.requests.restaction.MessageAction;
+import net.dv8tion.jda.api.managers.AudioManager;
 
-public class NowPlayingCommand implements ICommand {
+public class LeaveCommand implements ICommand {
 
     @Override
     public void handle(CommandContext ctx) {
@@ -42,27 +40,29 @@ public class NowPlayingCommand implements ICommand {
             return;
         }
 
-        final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(ctx.getGuild());
-        final AudioPlayer player = musicManager.player;
-        final AudioTrack track = player.getPlayingTrack();
+        final Guild guild = ctx.getGuild();
 
-        if (track == null) {
-            textChannel.sendMessage("There is no track playing currently!").queue();
-            return;
-        }
+        final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(guild);
 
-        final AudioTrackInfo trackInfo = track.getInfo();
-        textChannel.sendMessageFormat("Now playing `%s` by `%s` (link: <%s>)", trackInfo.title, trackInfo.author, trackInfo.uri).queue();
+        musicManager.scheduler.repeating = false;
+        RepeatCommand.setRepeat(ctx.getGuild().getIdLong(), false);
+        musicManager.scheduler.queue.clear();
+        StopCommand.clearQueue(guild.getIdLong());
+        musicManager.player.stopTrack();
+
+        final AudioManager audioManager = ctx.getGuild().getAudioManager();
+        audioManager.closeAudioConnection();
+        textChannel.sendMessage("I have left the voice channel").queue();
     }
 
     @Override
     public String getName() {
-        return "nowplaying";
+        return "leave";
     }
 
     @Override
     public String getHelp() {
-        return "Shows the currently playing song\n" +
-                "Usage: `" + Config.PREFIX + "nowplaying`";
+        return "Leaves the voice channel that the bot is in\n"+
+                "Usage: `" + Config.PREFIX + "leave`";
     }
 }

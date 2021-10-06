@@ -3,11 +3,16 @@ package com.tistory.iqpizza6349.command.commands.music;
 import com.tistory.iqpizza6349.Config;
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
+import com.tistory.iqpizza6349.database.MySQLDatabase;
 import com.tistory.iqpizza6349.lavaplayer.GuildMusicManager;
 import com.tistory.iqpizza6349.lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class StopCommand implements ICommand {
 
@@ -41,6 +46,7 @@ public class StopCommand implements ICommand {
 
         musicManager.scheduler.player.stopTrack();
         musicManager.scheduler.queue.clear();
+        clearQueue(ctx.getGuild().getIdLong());
 
         textChannel.sendMessage("The Player has been stopped and the queue has been cleared!").queue();
     }
@@ -55,4 +61,21 @@ public class StopCommand implements ICommand {
         return "Stops the current song and clear\n" +
                 "Usage: `" + Config.PREFIX + "stop`";
     }
+
+    public static void clearQueue(long guildId) {
+        String stringGuild_id = String.valueOf(guildId);
+        try (final PreparedStatement insertCurrentSong = MySQLDatabase
+                .getConnection()
+                .prepareStatement("UPDATE music SET current_song = ?, queue = ?, count = ? WHERE guild_id = ?")) {
+            insertCurrentSong.setString(1, "NULL");
+            insertCurrentSong.setString(2, "NULL");
+            insertCurrentSong.setString(3, String.valueOf(0));
+            insertCurrentSong.setString(4, stringGuild_id);
+            insertCurrentSong.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

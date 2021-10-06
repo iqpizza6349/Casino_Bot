@@ -1,31 +1,28 @@
 package com.tistory.iqpizza6349.command.commands.music;
 
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.tistory.iqpizza6349.Config;
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
+import com.tistory.iqpizza6349.lavaplayer.GuildMusicManager;
 import com.tistory.iqpizza6349.lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PlayCommand implements ICommand {
+public class RepeatCommand implements ICommand {
+
+    // Class of name is 'RepeatCommand' but, actually the user use command 'loop'
+    // because the 'loop' is more simply than 'repeat'
 
     @Override
     public void handle(CommandContext ctx) {
         final TextChannel textChannel = ctx.getChannel();
-
-        if (ctx.getStrings().isEmpty()) {
-            textChannel.sendMessage("Correct usage is `" + Config.PREFIX + "play <youtube link>`").queue();
-            return;
-        }
-
         final Member selfMember = ctx.getSelfMember();
         final GuildVoiceState selfVoiceState = selfMember.getVoiceState();
 
@@ -49,62 +46,70 @@ public class PlayCommand implements ICommand {
             return;
         }
 
-        if (getQueueCount(ctx.getGuild().getIdLong()) >= 20) {
-            textChannel.sendMessage("The maximum music cue is 20.\n" +
-                    "Please wait until the current song ends!").queue();
-            return;
-        }
+        final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(ctx.getGuild());
+        final boolean newRepeating = !musicManager.scheduler.repeating;
 
-        String link = String.join(" ", ctx.getStrings());
+        musicManager.scheduler.repeating = newRepeating;
+        setRepeat(ctx.getGuild().getIdLong(), newRepeating);
 
-        if (!isUrl(link)) {
-            link = "ytsearch:" + link;
-        }
-
-        PlayerManager.getInstance()
-                .loadAndPlay(textChannel, link);
+        textChannel.sendMessageFormat("The player has been set to **%s**", newRepeating ? "loop Enable" : "loop Disable").queue();
     }
 
     @Override
     public String getName() {
-        return "play";
+        return "loop";
     }
 
     @Override
     public String getHelp() {
-        return "Plays a song\n" +
-                "Usage: `" + Config.PREFIX + "play <youtube link>`";
+        return "Loops the current song\n" +
+                "Usage: `" + Config.PREFIX + "loop`";
     }
 
-    private boolean isUrl(String url) {
-        try {
-            new URL(url);
-            return true;
-        }catch (MalformedURLException e) {
-            return false;
+    public static void setRepeat(long guildId, boolean isRepeat) {
+        int repeatValue;
+        if (isRepeat)
+            repeatValue = 1;
+        else
+            repeatValue = 0;
+        try (final PreparedStatement preparedStatement = MySQLDatabase.getConnection()
+                .prepareStatement("UPDATE music SET `repeat` = ? WHERE guild_id = ?")) {
+
+            preparedStatement.setString(1, String.valueOf(repeatValue));
+            preparedStatement.setString(2, String.valueOf(guildId));
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
-    public static int getQueueCount(long guildId) {
+    public static boolean getRepeat(long guildId) {
         try (final PreparedStatement preparedStatement = MySQLDatabase
                 .getConnection()
-                .prepareStatement("SELECT count FROM music WHERE guild_id = ?")) {
+                .prepareStatement("SELECT `repeat` FROM music WHERE guild_id = ?")) {
 
             preparedStatement.setString(1, String.valueOf(guildId));
 
             try (final ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    return resultSet.getInt("count");
+                    return resultSet.getBoolean("repeat");
                 }
             }
 
+            try (final PreparedStatement insertStatement = MySQLDatabase
+                    .getConnection()
+                    .prepareStatement("INSERT INTO music(guild_id) VALUES(?) ")) {
+
+                insertStatement.setString(1, String.valueOf(guildId));
+
+                insertStatement.execute();
+            }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        return 0;
+        return false;
     }
-
-
 
 }

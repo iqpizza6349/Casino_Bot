@@ -7,9 +7,13 @@ import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
+import com.tistory.iqpizza6349.database.MySQLDatabase;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.TextChannel;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +37,7 @@ public class PlayerManager {
             final GuildMusicManager guildMusicManager = new GuildMusicManager(this.audioPlayerManager);
 
             guild.getAudioManager().setSendingHandler(guildMusicManager.getHandler());
+            guildMusicManager.scheduler.setGuildId(guild.getIdLong());
 
             return guildMusicManager;
         });
@@ -45,28 +50,30 @@ public class PlayerManager {
 
             @Override
             public void trackLoaded(AudioTrack audioTrack) {
-                musicManager.scheduler.queue(audioTrack);
+                musicManager.scheduler.queue(audioTrack, textChannel.getGuild().getIdLong());
 
                 textChannel.sendMessage("Adding to queue: `")
                         .append(audioTrack.getInfo().title)
                         .append("` by `")
                         .append(audioTrack.getInfo().author)
+                        .append("`")
                         .queue();
             }
 
             @Override
             public void playlistLoaded(AudioPlaylist audioPlaylist) {
-                final List<AudioTrack> tracks = audioPlaylist.getTracks();
+                /*final List<AudioTrack> tracks = audioPlaylist.getTracks();
 
                 textChannel.sendMessage("Adding to queue: `")
                         .append(String.valueOf(tracks.size()))
                         .append("` tracks from playlist `")
                         .append(audioPlaylist.getName())
+                        .append("`")
                         .queue();
 
                 for (final AudioTrack track : tracks) {
-                    musicManager.scheduler.queue(track);
-                }
+                    musicManager.scheduler.queue(track, textChannel.getGuild().getIdLong());
+                }*/
             }
 
             @Override

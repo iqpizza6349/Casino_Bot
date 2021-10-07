@@ -38,6 +38,7 @@ public class MySQLDatabase {
                   "`user_id` VARCHAR(20) NOT NULL, " +
                   "`money` INT(11) NOT NULL DEFAULT 3000," +
                   "`level` INT(11) NOT NULL DEFAULT 1," +
+                  "`exp` INTEGER NOT NULL DEFAULT 0," +
                   "`bankruptcy` BOOLEAN NOT NULL DEFAULT FALSE ," +
                   "`stock` TEXT," +
                   "`web_hook_url` VARCHAR(255)," +

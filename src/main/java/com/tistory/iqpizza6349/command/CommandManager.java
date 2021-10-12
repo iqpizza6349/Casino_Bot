@@ -5,6 +5,8 @@ import com.tistory.iqpizza6349.command.commands.*;
 import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
 import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
 import com.tistory.iqpizza6349.command.commands.music.*;
+import com.tistory.iqpizza6349.command.search.MovieSearcher;
+import com.tistory.iqpizza6349.command.search.SchoolMealsSearcher;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -55,6 +57,10 @@ public class CommandManager {
         // 게임 명령어
         addCommand(new FlipCoin());
         addCommand(new OddAndEven());
+
+        // test
+        addCommand(new MovieSearcher());
+        addCommand(new SchoolMealsSearcher());
     }
 
     private void addCommand(ICommand cmd) {

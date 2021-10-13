@@ -1,6 +1,9 @@
 package com.tistory.iqpizza6349.command;
 
 import com.tistory.iqpizza6349.command.commands.*;
+import com.tistory.iqpizza6349.command.commands.Gamecommands.UpgradetheSword;
+import com.tistory.iqpizza6349.command.commands.Gamecommands.sellcommand;
+import com.tistory.iqpizza6349.command.commands.music.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import javax.annotation.Nullable;
@@ -19,9 +22,20 @@ public class CommandManager {
         addCommand(new PasteCommand()); // 일반적인 코드 전달 시, 디코로 편하게 보내기 위한 명령어
         addCommand(new HasteCommand()); // HTML 코드 전달 시, 디코로 편하게 보내기 위한 명령어
         addCommand(new KickCommand());  // 멤버 추방
-        addCommand(new WebhookCommand());   // 웹 훅
+        //addCommand(new WebhookCommand());   // 웹 훅
+        addCommand(new sellcommand());
+        addCommand(new UpgradetheSword());
 
         addCommand(new SetPrefixCommand()); // 커스텀 prefix
+
+        addCommand(new JoinCommand());  // 음악 봇 참가 명령어
+        addCommand(new PlayCommand());
+        addCommand(new StopCommand());
+        addCommand(new SkipCommand());
+        addCommand(new NowPlayingCommand());
+        addCommand(new QueueCommand());
+        addCommand(new RepeatCommand());
+        addCommand(new LeaveCommand());
     }
 
     private void addCommand(ICommand cmd) {

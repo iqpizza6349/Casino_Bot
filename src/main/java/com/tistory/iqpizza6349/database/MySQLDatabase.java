@@ -39,10 +39,22 @@ public class MySQLDatabase {
                   "`money` INT(11) NOT NULL DEFAULT 3000," +
                   "`level` INT(11) NOT NULL DEFAULT 1," +
                   "`bankruptcy` BOOLEAN NOT NULL DEFAULT FALSE ," +
-                  "`stock` TEXT," +
-                  "`web_hook_url` VARCHAR(255)," +
-                  "`sword` VARCHAR(255)" +
+                  "`stock` TEXT null ," +
+                  "`today` VARCHAR(20) null ," +
+                  "`web_hook_url` VARCHAR(255) null ," +
+                  "`sword` VARCHAR(255) DEFAULT '기본검' " +
             ");");
+
+            statement.execute("CREATE TABLE IF NOT EXISTS `stock_info` (" +
+                    "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
+                    "`user_id` VARCHAR(20) NOT NULL, " +
+                    "`money` INT(11) NOT NULL DEFAULT 3000," +
+                    "`level` INT(11) NOT NULL DEFAULT 1," +
+                    "`bankruptcy` BOOLEAN NOT NULL DEFAULT FALSE ," +
+                    "`stock` TEXT null ," +
+                    "`web_hook_url` VARCHAR(255) null" +
+                    ");");
+
             LOGGER.info("initialized mysql connected!");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

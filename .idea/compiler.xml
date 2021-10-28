@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Casino_Bot" />
+        <module name="Casino_Bot-addMusicCommand" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />

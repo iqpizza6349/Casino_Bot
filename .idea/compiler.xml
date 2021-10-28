@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Casino_Bot" />
         <module name="Casino_Bot-addMusicCommand" />
+        <module name="TutorialBot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />

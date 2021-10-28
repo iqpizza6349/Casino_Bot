@@ -1149,7 +1149,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </column>
     <column id="316" parent="290" name="today">
       <Position>7</Position>
-      <DataType>varchar(20)|0s</DataType>
+      <DataType>varchar(255)|0s</DataType>
     </column>
     <column id="317" parent="290" name="web_hook_url">
       <Position>8</Position>

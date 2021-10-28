@@ -4,7 +4,7 @@ public class Config {
 
     public static boolean debug = false;                                                               // 디버깅 용
 
-    public static String TOKEN = "ODkwNDQ4Njg0NDczNTI4MzMw.YUv89g.cUKp88HKoVXoCxiislbdGFNV2D4";                                                                   // 봇 토큰
+    public static String TOKEN = "";                                                                   // 봇 토큰
 
     public static String DEVELOPER = "396164482054881283";                                                               // 봇 개발자
 

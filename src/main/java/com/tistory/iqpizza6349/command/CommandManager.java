@@ -6,6 +6,9 @@ import com.tistory.iqpizza6349.command.commands.game.Dice;
 import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
 import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
 import com.tistory.iqpizza6349.command.commands.information.*;
+import com.tistory.iqpizza6349.command.commands.Gamecommands.Todayluck;
+import com.tistory.iqpizza6349.command.commands.Gamecommands.UpgradetheSword;
+import com.tistory.iqpizza6349.command.commands.Gamecommands.sellcommand;
 import com.tistory.iqpizza6349.command.commands.music.*;
 import com.tistory.iqpizza6349.command.commands.utility.Calculator;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
@@ -45,12 +48,22 @@ public class CommandManager {
         addCommand(new JokeCommand());
         addCommand(new SetPrefixCommand()); // 커스텀 prefix
 
+        addCommand(new sellcommand());
+        addCommand(new UpgradetheSword());
+        addCommand(new Nowmoney());
+        addCommand(new Todayluck());
+
+        addCommand(new SetPrefixCommand()); // 커스텀 prefix
+      
         addCommand(new JoinCommand());  // 음악 봇 참가 명령어
         addCommand(new PlayCommand());
         addCommand(new StopCommand());
         addCommand(new SkipCommand());
         addCommand(new LeaveCommand());
         addCommand(new NowPlayingCommand());
+        addCommand(new QueueCommand());
+        addCommand(new RepeatCommand());
+        addCommand(new LeaveCommand());
 
         addCommand(new EventWaiterCommand(waiter));
 

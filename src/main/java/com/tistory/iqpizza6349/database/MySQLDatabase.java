@@ -40,9 +40,10 @@ public class MySQLDatabase {
                   "`level` INT(11) NOT NULL DEFAULT 1," +
                   "`exp` INTEGER NOT NULL DEFAULT 0," +
                   "`bankruptcy` BOOLEAN NOT NULL DEFAULT FALSE ," +
-                  "`stock` TEXT," +
-                  "`web_hook_url` VARCHAR(255)," +
-                  "`sword` VARCHAR(255)" +
+                  "`stock` TEXT null ," +
+                  "`today` VARCHAR(20) null ," +
+                  "`web_hook_url` VARCHAR(255) null ," +
+                  "`sword` VARCHAR(255) DEFAULT '기본검' " +
             ");");
 
             // PK, name, price, maximum, lowest, 상승/하락 세

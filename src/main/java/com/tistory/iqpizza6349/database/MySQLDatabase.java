@@ -44,6 +44,17 @@ public class MySQLDatabase {
                   "`web_hook_url` VARCHAR(255)," +
                   "`sword` VARCHAR(255)" +
             ");");
+
+            // PK, name, price, maximum, lowest, 상승/하락 세
+            statement.execute("CREATE TABLE IF NOT EXISTS `stock_info` (" +
+                    "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
+                    "`stock_name` VARCHAR(20) NOT NULL," +
+                    "`price` FLOAT NOT NULL DEFAULT 100.0," +
+                    "`maximum` FLOAT NOT NULL DEFAULT 100.0," +
+                    "`lowest` FLOAT NOT NULL DEFAULT 100.0," +
+                    "`trend` FLOAT NOT NULL DEFAULT 0.0" +
+            ");");
+
             LOGGER.info("initialized mysql connected!");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

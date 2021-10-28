@@ -1,16 +1,13 @@
 package com.tistory.iqpizza6349.jsoup.module;
 
-import com.tistory.iqpizza6349.jsoup.MovieCrawler;
-import com.tistory.iqpizza6349.jsoup.SchoolMealsCrawler;
+import com.tistory.iqpizza6349.jsoup.*;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Objects;
 
 public class CrawlerModule {
 
@@ -23,6 +20,9 @@ public class CrawlerModule {
     public CrawlerModule() {
         addCrawler("movie", new MovieCrawler());
         addCrawler("schoolmeals", new SchoolMealsCrawler());
+        addCrawler("weather", new WeatherCrawler());
+        addCrawler("exchangerate", new ExchangeRateCrawler());
+        addCrawler("namuwiki", new NamuWikiCrawler());
     }
 
     public String getUrl() {
@@ -75,11 +75,12 @@ public class CrawlerModule {
         return null;
     }
 
-
     public Iterator<String> run() {
         try {
-            this.document = Jsoup.connect(this.url).get();
-        } catch (IOException e) {
+            this.document = Jsoup.connect(this.url)
+                    .userAgent("Mozilla/5.0 MenuDocs BOT_TEST#8047 / IQPIZZA6349#8983")
+                    .get();
+        } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
 

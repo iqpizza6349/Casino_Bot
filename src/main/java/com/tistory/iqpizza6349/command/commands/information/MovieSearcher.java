@@ -1,4 +1,4 @@
-package com.tistory.iqpizza6349.command.search;
+package com.tistory.iqpizza6349.command.commands.information;
 
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;

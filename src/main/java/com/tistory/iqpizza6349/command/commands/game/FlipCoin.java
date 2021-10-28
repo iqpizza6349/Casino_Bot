@@ -1,11 +1,8 @@
 package com.tistory.iqpizza6349.command.commands.game;
 
-import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.internal.utils.ContextRunnable;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;

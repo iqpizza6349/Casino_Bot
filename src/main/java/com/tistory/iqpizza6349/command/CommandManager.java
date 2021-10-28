@@ -2,11 +2,12 @@ package com.tistory.iqpizza6349.command;
 
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.tistory.iqpizza6349.command.commands.*;
+import com.tistory.iqpizza6349.command.commands.game.Dice;
 import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
 import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
+import com.tistory.iqpizza6349.command.commands.information.*;
 import com.tistory.iqpizza6349.command.commands.music.*;
-import com.tistory.iqpizza6349.command.search.MovieSearcher;
-import com.tistory.iqpizza6349.command.search.SchoolMealsSearcher;
+import com.tistory.iqpizza6349.command.commands.utility.Calculator;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -41,10 +42,9 @@ public class CommandManager {
         addCommand(new HasteCommand()); // HTML 코드 전달 시, 디코로 편하게 보내기 위한 명령어
         addCommand(new KickCommand());  // 멤버 추방
         //addCommand(new WebhookCommand());   // 웹 훅
-
+        addCommand(new JokeCommand());
         addCommand(new SetPrefixCommand()); // 커스텀 prefix
 
-        // TODO 추후 MusicCommand 로 한 번에 묶기
         addCommand(new JoinCommand());  // 음악 봇 참가 명령어
         addCommand(new PlayCommand());
         addCommand(new StopCommand());
@@ -57,10 +57,17 @@ public class CommandManager {
         // 게임 명령어
         addCommand(new FlipCoin());
         addCommand(new OddAndEven());
+        addCommand(new Dice());
 
-        // test
+        // 유틸리티
+        addCommand(new Calculator());
+
+        // information
+        addCommand(new ExchangeRate());
         addCommand(new MovieSearcher());
         addCommand(new SchoolMealsSearcher());
+        addCommand(new WeatherSearcher());
+        addCommand(new NamuWiki());
     }
 
     private void addCommand(ICommand cmd) {

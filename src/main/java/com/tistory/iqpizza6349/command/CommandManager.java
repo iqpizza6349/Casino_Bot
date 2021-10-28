@@ -1,6 +1,7 @@
 package com.tistory.iqpizza6349.command;
 
 import com.tistory.iqpizza6349.command.commands.*;
+import com.tistory.iqpizza6349.command.commands.Gamecommands.Todayluck;
 import com.tistory.iqpizza6349.command.commands.Gamecommands.UpgradetheSword;
 import com.tistory.iqpizza6349.command.commands.Gamecommands.sellcommand;
 import com.tistory.iqpizza6349.command.commands.music.*;
@@ -25,6 +26,8 @@ public class CommandManager {
         //addCommand(new WebhookCommand());   // 웹 훅
         addCommand(new sellcommand());
         addCommand(new UpgradetheSword());
+        addCommand(new Nowmoney());
+        addCommand(new Todayluck());
 
         addCommand(new SetPrefixCommand()); // 커스텀 prefix
 

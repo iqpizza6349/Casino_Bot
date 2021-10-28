@@ -40,6 +40,7 @@ public class MySQLDatabase {
                   "`level` INT(11) NOT NULL DEFAULT 1," +
                   "`bankruptcy` BOOLEAN NOT NULL DEFAULT FALSE ," +
                   "`stock` TEXT null ," +
+                  "`today` VARCHAR(20) null ," +
                   "`web_hook_url` VARCHAR(255) null ," +
                   "`sword` VARCHAR(255) DEFAULT '기본검' " +
             ");");

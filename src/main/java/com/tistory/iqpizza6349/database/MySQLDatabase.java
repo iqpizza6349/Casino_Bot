@@ -54,6 +54,7 @@ public class MySQLDatabase {
                     "`stock` TEXT null ," +
                     "`web_hook_url` VARCHAR(255) null" +
                     ");");
+
             LOGGER.info("initialized mysql connected!");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

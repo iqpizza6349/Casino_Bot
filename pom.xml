@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.30</version>
+            <version>1.7.32</version>
         </dependency>
         <dependency>
             <groupId>me.duncte123</groupId>
@@ -64,6 +64,13 @@
             <artifactId>lavaplayer</artifactId>
             <version>1.3.77</version>
         </dependency>
+        <dependency>
+            <groupId>com.jagrosh</groupId>
+            <artifactId>jda-utilities</artifactId>
+            <version>3.0.5</version>
+            <scope>compile</scope>
+            <type>pom</type>
+        </dependency>
     </dependencies>
     <repositories>
         <repository>
@@ -80,6 +87,11 @@
             <id>jfrog-duncte123</id>
             <name>jfrog-duncte123</name>
             <url>https://duncte123.jfrog.io/artifactory/maven</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>bintray</name>
+            <url>http://jcenter.bintray.com</url>
         </repository>
     </repositories>
 

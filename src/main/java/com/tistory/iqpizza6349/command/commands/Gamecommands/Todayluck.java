@@ -24,7 +24,7 @@ public class Todayluck implements ICommand {
 
     public Todayluck() {
         lucky.put(1, "The Fool");
-        lucky.put(2, "The Magicion");
+        lucky.put(2, "The Magician");
         lucky.put(3, "The High Priestess");
         lucky.put(4, "The Empress");
         lucky.put(5, "The Emperor");
@@ -50,7 +50,7 @@ public class Todayluck implements ICommand {
     @Override
     public void handle(CommandContext ctx) {
         calendar.add(Calendar.DATE, 0);
-        calendar.add(Calendar.MONTH, 1);
+        calendar.add(Calendar.MONTH, 0);
         calendar.add(Calendar.YEAR, 0);
 
         User user = ctx.getMessage().getAuthor();
@@ -80,6 +80,7 @@ public class Todayluck implements ICommand {
         if(lastdate){
             System.out.println("돌아간다.");
             resetToday(user.getIdLong());
+            check = null;
         }
 
         if(check != null){

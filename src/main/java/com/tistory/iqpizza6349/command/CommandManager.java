@@ -52,8 +52,6 @@ public class CommandManager {
         addCommand(new UpgradetheSword());
         addCommand(new Nowmoney());
         addCommand(new Todayluck());
-
-        addCommand(new SetPrefixCommand()); // 커스텀 prefix
       
         addCommand(new JoinCommand());  // 음악 봇 참가 명령어
         addCommand(new PlayCommand());
@@ -63,7 +61,6 @@ public class CommandManager {
         addCommand(new NowPlayingCommand());
         addCommand(new QueueCommand());
         addCommand(new RepeatCommand());
-        addCommand(new LeaveCommand());
 
         addCommand(new EventWaiterCommand(waiter));
 

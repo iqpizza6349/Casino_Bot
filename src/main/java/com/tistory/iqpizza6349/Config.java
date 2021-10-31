@@ -6,7 +6,7 @@ public class Config {
 
     public static String TOKEN = "";                                                                   // 봇 토큰
 
-    public static String DEVELOPER = "396164482054881283";                                                               // 봇 개발자
+    public static String DEVELOPER = "";                                                               // 봇 개발자
 
     public static String PREFIX = ".";                                                                  // 봇 prefix
 
@@ -22,7 +22,7 @@ public class Config {
      *
      */
 
-    public static String USER_NAME = "root";
-    public static String USER_PASSWORD = "wnwnqj11";
+    public static String USER_NAME = "";
+    public static String USER_PASSWORD = "";
 
 }

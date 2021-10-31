@@ -24,6 +24,7 @@ public class MySQLDatabase {
                     "prefix VARCHAR(255) NOT NULL DEFAULT '" + defaultPrefix + "'" +
             ");");
 
+
             statement.execute("CREATE TABLE IF NOT EXISTS `music` (" +
                   "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
                   "`guild_id` VARCHAR(20) NOT NULL," +
@@ -41,7 +42,7 @@ public class MySQLDatabase {
                   "`exp` INTEGER NOT NULL DEFAULT 0," +
                   "`bankruptcy` BOOLEAN NOT NULL DEFAULT FALSE ," +
                   "`stock` TEXT null ," +
-                  "`today` VARCHAR(20) null ," +
+                  "`today` VARCHAR(255) null ," +
                   "`web_hook_url` VARCHAR(255) null ," +
                   "`sword` VARCHAR(255) DEFAULT '기본검' " +
             ");");

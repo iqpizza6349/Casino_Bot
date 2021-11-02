@@ -23,6 +23,7 @@ public class CrawlerModule {
         addCrawler("weather", new WeatherCrawler());
         addCrawler("exchangerate", new ExchangeRateCrawler());
         addCrawler("namuwiki", new NamuWikiCrawler());
+        addCrawler("dictionary", new DictionaryCrawler());
     }
 
     public String getUrl() {

@@ -21,6 +21,7 @@ public class MySQLDatabase {
             statement.execute("CREATE TABLE IF NOT EXISTS guild_settings (" +
                     "id INTEGER PRIMARY KEY AUTO_INCREMENT," +
                     "guild_id VARCHAR(20) NOT NULL," +
+                    "slotmoney INTEGER NOT NULL DEFAULT 6000," +
                     "prefix VARCHAR(255) NOT NULL DEFAULT '" + defaultPrefix + "'" +
             ");");
 
@@ -55,7 +56,6 @@ public class MySQLDatabase {
                     "`stock` TEXT null ," +
                     "`web_hook_url` VARCHAR(255) null" +
                     ");");
-
             LOGGER.info("initialized mysql connected!");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

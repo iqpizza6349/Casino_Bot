@@ -65,7 +65,6 @@ public class Todayluck implements ICommand {
                 check = s.split("-")[0];
             }
         }
-        String card = lucky.get(rand.nextInt(22));
 
         String to = decimalFormat.format(calendar.get(Calendar.DAY_OF_MONTH));
 
@@ -83,9 +82,16 @@ public class Todayluck implements ICommand {
             check = null;
         }
 
+        String card = lucky.get(rand.nextInt(22));
         if(check != null){
             card = check;
         }
+
+        if(card == null){
+            card = lucky.get(rand.nextInt(22));
+        }
+
+
         if (card.equals(lucky.get(1))) {
             channel.sendMessage(user.getName() + "님의 오늘의 운세는 " + card + " 입니다.\n").queue();
             channel.sendMessage("카드 뜻 : 이 카드는 모험, 출발이라는 뜻도 있지만, 경솔하고 어리석다는 뜻도 있어요.").queue();

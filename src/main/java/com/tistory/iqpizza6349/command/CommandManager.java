@@ -1,7 +1,9 @@
 package com.tistory.iqpizza6349.command;
 
-import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.tistory.iqpizza6349.command.commands.*;
+import com.tistory.iqpizza6349.command.commands.Crawlercommands.BitCoinCommand;
+import com.tistory.iqpizza6349.command.commands.Crawlercommands.CoupangCommand;
+import com.tistory.iqpizza6349.command.commands.Crawlercommands.DictionaryCommand;
 import com.tistory.iqpizza6349.command.commands.game.Dice;
 import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
 import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
@@ -38,7 +40,7 @@ public class CommandManager {
         }
     }
 
-    public CommandManager(EventWaiter waiter) {
+    public CommandManager() {
         addCommand(new PingCommand());  // 핑 명령어
         addCommand(new HelpCommand(this)); // 명령어 도움말
         addCommand(new PasteCommand()); // 일반적인 코드 전달 시, 디코로 편하게 보내기 위한 명령어
@@ -52,6 +54,11 @@ public class CommandManager {
         addCommand(new UpgradetheSword());
         addCommand(new Nowmoney());
         addCommand(new Todayluck());
+        addCommand(new DictionaryCommand());
+        addCommand(new CoupangCommand());
+        //addCommand(new BitCoinCommand());
+
+        addCommand(new SetPrefixCommand()); // 커스텀 prefix
       
         addCommand(new JoinCommand());  // 음악 봇 참가 명령어
         addCommand(new PlayCommand());

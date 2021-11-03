@@ -1,11 +1,15 @@
 package com.tistory.iqpizza6349;
 
 import com.tistory.iqpizza6349.command.CommandManager;
+import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
+import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
 import me.duncte123.botcommons.BotCommons;
+import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
@@ -44,6 +48,47 @@ public class Listener extends ListenerAdapter {
 
         if (msg.startsWith(prefix)) {
             manager.handle(event, prefix);
+        }
+    }
+
+    @Override
+    public void onGuildMessageReactionAdd(@NotNull GuildMessageReactionAddEvent event) {
+        User user = event.getUser();
+        TextChannel channel = event.getChannel();
+
+        if (user.isBot()) {
+            return;
+        }
+
+        if (FlipCoin.bettingUserMap.containsKey(channel.getGuild().getIdLong())) {
+            if (FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).containsKey(user.getIdLong())) {
+                channel.sendMessage("You already bet to " + FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).get(user.getIdLong())).queue();
+            }
+            else {
+                if (event.getReactionEmote().getName().equals(FlipCoin.head)) {
+                    FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), true);
+                    channel.sendMessageFormat("#%s, you bet to head", user).queue();
+                }
+                else if (event.getReactionEmote().getName().equals(FlipCoin.tail)) {
+                    FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), false);
+                    channel.sendMessageFormat("#%s, you bet to tail", user).queue();
+                }
+            }
+        }
+        else if (OddAndEven.bettingUserMap.containsKey(channel.getGuild().getIdLong())) {
+            if (OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).containsKey(user.getIdLong())) {
+                channel.sendMessage("You already bet to " + OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).get(user.getIdLong())).queue();
+            }
+            else {
+                if (event.getReactionEmote().getName().equals(OddAndEven.odd)) {
+                    OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), true);
+                    channel.sendMessageFormat("#%s, you bet to odd", user).queue();
+                }
+                else if (event.getReactionEmote().getName().equals(OddAndEven.even)) {
+                    OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), false);
+                    channel.sendMessageFormat("#%s, you bet to even", user).queue();
+                }
+            }
         }
     }
 

@@ -40,6 +40,7 @@ public class MySQLDatabase {
                   "`user_id` VARCHAR(20) NOT NULL, " +
                   "`money` INT(11) NOT NULL DEFAULT 3000," +
                   "`level` INT(11) NOT NULL DEFAULT 1," +
+                  "`exp` INTEGER NOT NULL DEFAULT 0," +
                   "`bankruptcy` BOOLEAN NOT NULL DEFAULT FALSE ," +
                   "`stock` TEXT null ," +
                   "`today` VARCHAR(255) null ," +
@@ -47,8 +48,10 @@ public class MySQLDatabase {
                   "`sword` VARCHAR(255) DEFAULT '기본검' " +
             ");");
 
+            // PK, name, price, maximum, lowest, 상승/하락 세
             statement.execute("CREATE TABLE IF NOT EXISTS `stock_info` (" +
                     "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
+<<<<<<< HEAD
                     "`user_id` VARCHAR(20) NOT NULL, " +
                     "`money` INT(11) NOT NULL DEFAULT 3000," +
                     "`level` INT(11) NOT NULL DEFAULT 1," +
@@ -56,6 +59,15 @@ public class MySQLDatabase {
                     "`stock` TEXT null ," +
                     "`web_hook_url` VARCHAR(255) null" +
                     ");");
+=======
+                    "`stock_name` VARCHAR(20) NOT NULL," +
+                    "`price` FLOAT NOT NULL DEFAULT 100.0," +
+                    "`maximum` FLOAT NOT NULL DEFAULT 100.0," +
+                    "`lowest` FLOAT NOT NULL DEFAULT 100.0," +
+                    "`trend` FLOAT NOT NULL DEFAULT 0.0" +
+            ");");
+
+>>>>>>> ace6c25c5bc1be9eaa734fb9cce1bec340b6a05f
             LOGGER.info("initialized mysql connected!");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

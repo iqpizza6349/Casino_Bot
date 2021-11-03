@@ -22,7 +22,7 @@ public class Config {
      *
      */
 
-    public static String USER_NAME = "root";
-    public static String USER_PASSWORD = "wnwnqj11";
+    public static String USER_NAME = "";
+    public static String USER_PASSWORD = "";
 
 }

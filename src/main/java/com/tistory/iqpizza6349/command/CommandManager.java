@@ -1,16 +1,13 @@
 package com.tistory.iqpizza6349.command;
 
 import com.tistory.iqpizza6349.command.commands.*;
-<<<<<<< HEAD
 import com.tistory.iqpizza6349.command.commands.Crawlercommands.BitCoinCommand;
 import com.tistory.iqpizza6349.command.commands.Crawlercommands.CoupangCommand;
 import com.tistory.iqpizza6349.command.commands.Crawlercommands.DictionaryCommand;
-=======
 import com.tistory.iqpizza6349.command.commands.game.Dice;
 import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
 import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
 import com.tistory.iqpizza6349.command.commands.information.*;
->>>>>>> ace6c25c5bc1be9eaa734fb9cce1bec340b6a05f
 import com.tistory.iqpizza6349.command.commands.Gamecommands.Todayluck;
 import com.tistory.iqpizza6349.command.commands.Gamecommands.UpgradetheSword;
 import com.tistory.iqpizza6349.command.commands.Gamecommands.sellcommand;
@@ -62,11 +59,7 @@ public class CommandManager {
         //addCommand(new BitCoinCommand());
 
         addCommand(new SetPrefixCommand()); // 커스텀 prefix
-<<<<<<< HEAD
-
-=======
       
->>>>>>> ace6c25c5bc1be9eaa734fb9cce1bec340b6a05f
         addCommand(new JoinCommand());  // 음악 봇 참가 명령어
         addCommand(new PlayCommand());
         addCommand(new StopCommand());
@@ -75,9 +68,6 @@ public class CommandManager {
         addCommand(new NowPlayingCommand());
         addCommand(new QueueCommand());
         addCommand(new RepeatCommand());
-        addCommand(new LeaveCommand());
-<<<<<<< HEAD
-=======
 
         addCommand(new EventWaiterCommand(waiter));
 
@@ -95,7 +85,6 @@ public class CommandManager {
         addCommand(new SchoolMealsSearcher());
         addCommand(new WeatherSearcher());
         addCommand(new NamuWiki());
->>>>>>> ace6c25c5bc1be9eaa734fb9cce1bec340b6a05f
     }
 
     private void addCommand(ICommand cmd) {

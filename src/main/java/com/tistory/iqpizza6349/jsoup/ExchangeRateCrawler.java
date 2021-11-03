@@ -4,9 +4,12 @@ import com.tistory.iqpizza6349.jsoup.module.CrawlerModule;
 import com.tistory.iqpizza6349.jsoup.module.Crawlers;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 public class ExchangeRateCrawler implements Crawlers {
 
@@ -22,11 +25,12 @@ public class ExchangeRateCrawler implements Crawlers {
     @Override
     public Iterator<String> crawling(Document document, String topic) {
         ArrayList<String> strings = new ArrayList<>();
+
         try {
-            Element text = document.select("span.DFlfde.SwHCTb").get(0);
-            strings.add(text.text());
+            Element element = document.select("div.BNeawe.iBp4i.AP7Wnd").get(0);
+            strings.add(element.text().split(" ")[0]);
         } catch (Exception e) {
-            System.out.println("no found that current money");
+            e.printStackTrace();
         }
         return strings.iterator();
     }

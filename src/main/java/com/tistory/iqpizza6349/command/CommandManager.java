@@ -13,6 +13,7 @@ import com.tistory.iqpizza6349.command.commands.Gamecommands.UpgradetheSword;
 import com.tistory.iqpizza6349.command.commands.Gamecommands.sellcommand;
 import com.tistory.iqpizza6349.command.commands.music.*;
 import com.tistory.iqpizza6349.command.commands.utility.Calculator;
+import com.tistory.iqpizza6349.command.commands.utility.Translate;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -78,6 +79,7 @@ public class CommandManager {
 
         // 유틸리티
         addCommand(new Calculator());
+        addCommand(new Translate());
 
         // information
         addCommand(new ExchangeRate());
@@ -85,6 +87,7 @@ public class CommandManager {
         addCommand(new SchoolMealsSearcher());
         addCommand(new WeatherSearcher());
         addCommand(new NamuWiki());
+        addCommand(new Dictionary());
     }
 
     private void addCommand(ICommand cmd) {

@@ -1,21 +1,21 @@
 package com.tistory.iqpizza6349.command;
 
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.tistory.iqpizza6349.command.commands.*;
-<<<<<<< HEAD
 import com.tistory.iqpizza6349.command.commands.Crawlercommands.BitCoinCommand;
 import com.tistory.iqpizza6349.command.commands.Crawlercommands.CoupangCommand;
 import com.tistory.iqpizza6349.command.commands.Crawlercommands.DictionaryCommand;
-=======
+import com.tistory.iqpizza6349.command.commands.Gamecommands.Slotmachine;
 import com.tistory.iqpizza6349.command.commands.game.Dice;
 import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
 import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
 import com.tistory.iqpizza6349.command.commands.information.*;
->>>>>>> ace6c25c5bc1be9eaa734fb9cce1bec340b6a05f
 import com.tistory.iqpizza6349.command.commands.Gamecommands.Todayluck;
 import com.tistory.iqpizza6349.command.commands.Gamecommands.UpgradetheSword;
 import com.tistory.iqpizza6349.command.commands.Gamecommands.sellcommand;
 import com.tistory.iqpizza6349.command.commands.music.*;
 import com.tistory.iqpizza6349.command.commands.utility.Calculator;
+//import com.tistory.iqpizza6349.command.commands.utility.Translate;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -43,7 +43,7 @@ public class CommandManager {
         }
     }
 
-    public CommandManager() {
+    public CommandManager(EventWaiter waiter) {
         addCommand(new PingCommand());  // 핑 명령어
         addCommand(new HelpCommand(this)); // 명령어 도움말
         addCommand(new PasteCommand()); // 일반적인 코드 전달 시, 디코로 편하게 보내기 위한 명령어
@@ -59,14 +59,11 @@ public class CommandManager {
         addCommand(new Todayluck());
         addCommand(new DictionaryCommand());
         addCommand(new CoupangCommand());
+        addCommand(new Slotmachine());
         //addCommand(new BitCoinCommand());
 
-        addCommand(new SetPrefixCommand()); // 커스텀 prefix
-<<<<<<< HEAD
-
-=======
+//          // 커스텀 prefix
       
->>>>>>> ace6c25c5bc1be9eaa734fb9cce1bec340b6a05f
         addCommand(new JoinCommand());  // 음악 봇 참가 명령어
         addCommand(new PlayCommand());
         addCommand(new StopCommand());
@@ -75,9 +72,6 @@ public class CommandManager {
         addCommand(new NowPlayingCommand());
         addCommand(new QueueCommand());
         addCommand(new RepeatCommand());
-        addCommand(new LeaveCommand());
-<<<<<<< HEAD
-=======
 
         addCommand(new EventWaiterCommand(waiter));
 
@@ -88,6 +82,7 @@ public class CommandManager {
 
         // 유틸리티
         addCommand(new Calculator());
+//        addCommand(new Translate());
 
         // information
         addCommand(new ExchangeRate());
@@ -95,7 +90,7 @@ public class CommandManager {
         addCommand(new SchoolMealsSearcher());
         addCommand(new WeatherSearcher());
         addCommand(new NamuWiki());
->>>>>>> ace6c25c5bc1be9eaa734fb9cce1bec340b6a05f
+        addCommand(new Dictionary());
     }
 
     private void addCommand(ICommand cmd) {

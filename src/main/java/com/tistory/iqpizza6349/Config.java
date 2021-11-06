@@ -4,7 +4,7 @@ public class Config {
 
     public static boolean debug = false;                                                               // 디버깅 용
 
-    public static String TOKEN = "";                                                                   // 봇 토큰
+    public static String TOKEN = "ODkwNDQ4Njg0NDczNTI4MzMw.YUv89g.5qN_LG4UyUWVj7LZM_y0nvTS_Ws";                                                                   // 봇 토큰
 
     public static String DEVELOPER = "";                                                               // 봇 개발자
 
@@ -22,7 +22,7 @@ public class Config {
      *
      */
 
-    public static String USER_NAME = "root";
+    public static String USER_NAME = "krapoi";
     public static String USER_PASSWORD = "wnwnqj11";
 
 }

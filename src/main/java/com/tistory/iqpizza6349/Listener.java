@@ -1,5 +1,6 @@
 package com.tistory.iqpizza6349;
 
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.tistory.iqpizza6349.command.CommandManager;
 import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
 import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
@@ -19,7 +20,11 @@ import java.sql.SQLException;
 
 public class Listener extends ListenerAdapter {
 
-    private final CommandManager manager = new CommandManager();
+    private final CommandManager manager;
+
+    public Listener(EventWaiter waiter) {
+        manager = new CommandManager(waiter);
+    }
 
     @Override
     public void onReady(@NotNull ReadyEvent event) {

@@ -36,7 +36,7 @@ public class ExchangeRate implements ICommand {
         String currentMoneyType = messages.get(1);
 
         Iterator<String> results = crawlerModule.getCrawler("exchangerate")
-                .handle(crawlerModule, "https://www.google.com/search?q=" + currentMoneyType + "+to+won", null, "exchangerate");
+                .handle(crawlerModule, "https://www.google.com/search?q=" + currentMoneyType + "%20to%20won", null, "exchangerate");
 
         ArrayList<String> strings = new ArrayList<>();
         if (results.hasNext()) {

@@ -4,14 +4,11 @@ import com.tistory.iqpizza6349.jsoup.module.CrawlerModule;
 import com.tistory.iqpizza6349.jsoup.module.Crawlers;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 
-public class ExchangeRateCrawler implements Crawlers {
+public class DictionaryCrawler implements Crawlers {
 
     @Override
     public Iterator<String> handle(CrawlerModule module, String url, Document document, String topic) {
@@ -27,8 +24,18 @@ public class ExchangeRateCrawler implements Crawlers {
         ArrayList<String> strings = new ArrayList<>();
 
         try {
-            Element element = document.select("div.BNeawe.iBp4i.AP7Wnd").get(0);
-            strings.add(element.text().split(" ")[0]);
+            Element element = document.select("ul.lst_krdic").get(0);
+
+            Element e = element.select("li").get(0);
+            String text = e.text();
+            if (text.contains("play")) {
+                text = text.replace("play", "");
+            }
+            if (text.contains("중요")) {
+                text = text.replace("중요", "");
+            }
+            strings.add(text);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

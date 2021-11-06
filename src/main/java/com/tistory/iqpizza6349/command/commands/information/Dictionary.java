@@ -9,7 +9,7 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import java.util.Iterator;
 import java.util.List;
 
-public class NamuWiki implements ICommand {
+public class Dictionary implements ICommand {
 
     @Override
     public void handle(CommandContext ctx) {
@@ -24,46 +24,46 @@ public class NamuWiki implements ICommand {
         }
 
         StringBuilder builder = new StringBuilder();
-        StringBuilder urlBuilder = new StringBuilder();
         for (String keyWord : messages) {
             builder.append(keyWord).append(" ");
-            urlBuilder.append(keyWord).append("%20");
         }
         String keyWord = builder.toString();
-        String urlKeyWord = urlBuilder.toString();
 
-        Iterator<String> results = crawlerModule.getCrawler("namuwiki")
-                .handle(crawlerModule, "https://namu.wiki/w/" + urlKeyWord, null, "namuwiki");
+        Iterator<String> results = crawlerModule.getCrawler("dictionary")
+                .handle(crawlerModule, "https://dict.naver.com/search.dict?dicQuery=" + keyWord, null, "dictionary");
 
         if (results == null) {
-            channel.sendMessage("no information, " + "https://namu.wiki/w/" + urlKeyWord).queue();
+            channel.sendMessage("no information, " + "https://dict.naver.com/search.dict?dicQuery=" + keyWord).queue();
             return;
         }
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         while (results.hasNext()) {
-            sb.append(results.next());
+            stringBuilder.append(results.next());
         }
+
         try {
             EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle(keyWord, "https://namu.wiki/w/" + urlKeyWord);
-            embedBuilder.addField("개요", sb.toString(), false);
-            embedBuilder.setThumbnail("https://w.namu.la/s/76f3cd317712c830ca32c3574db36c64e1e5ecaa7cc034113f98bec89e4a25149a8528b25fd556354c6e594c750889b3971e729596247278234391b5a6c69f4820659c9490c4d6d2e9ca9ab2815bf3ffd8c403de79405d5be2fcd9d849d9e77e");
+            embedBuilder.setTitle(keyWord, "https://dict.naver.com/search.dict?dicQuery=" + keyWord);
+            embedBuilder.addField("", stringBuilder.toString(), false);
+            embedBuilder.setThumbnail("https://play-lh.googleusercontent.com/ytdLHA3Td0wOlW-e1exeUNVhrqyWXpbsb0MJVt8IjncgyTSwITJ6tsWUGsd2ulGLS1g");
 
             channel.sendMessageEmbeds(embedBuilder.build()).queue();
         } catch (IllegalArgumentException e) {
-            channel.sendMessage("too much information " + "https://namu.wiki/w/" + urlKeyWord).queue();
+            channel.sendMessage("too much information " + "https://dict.naver.com/search.dict?dicQuery=" + keyWord).queue();
         }
+
+
+
     }
 
     @Override
     public String getName() {
-        return "namuwiki";
+        return "dict";
     }
 
     @Override
     public String getHelp() {
-        return "Shows articles with keywords in NamuWiki\n" +
-                "Usage: namuwiki (keyword)";
+        return "Dict";
     }
 }

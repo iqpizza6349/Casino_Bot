@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c75aed8e-5b89-44ef-b87c-0147fe5bfc6c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/command/CommandManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/command/CommandManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/command/commands/game/Dice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/command/commands/game/Dice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/command/commands/music/StopCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/command/commands/music/StopCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/command/commands/utility/Translate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/command/commands/utility/Translate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/database/MySQLDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/database/MySQLDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/lavaplayer/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/lavaplayer/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/lavaplayer/TrackScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/lavaplayer/TrackScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/translate/PapagoTranslate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tistory/iqpizza6349/translate/PapagoTranslate.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="1z76XuHIXgGjzKLM0DMdVTTTsiC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c75aed8e-5b89-44ef-b87c-0147fe5bfc6c" name="Changes" comment="" />
+      <created>1633486852663</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633486852663</updated>
+      <workItem from="1633487508717" duration="19000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

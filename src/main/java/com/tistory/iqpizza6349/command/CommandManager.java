@@ -5,6 +5,7 @@ import com.tistory.iqpizza6349.command.commands.*;
 import com.tistory.iqpizza6349.command.commands.Crawlercommands.BitCoinCommand;
 import com.tistory.iqpizza6349.command.commands.Crawlercommands.CoupangCommand;
 import com.tistory.iqpizza6349.command.commands.Crawlercommands.DictionaryCommand;
+import com.tistory.iqpizza6349.command.commands.Gamecommands.Slotmachine;
 import com.tistory.iqpizza6349.command.commands.game.Dice;
 import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
 import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
@@ -58,7 +59,7 @@ public class CommandManager {
         addCommand(new Todayluck());
         addCommand(new DictionaryCommand());
         addCommand(new CoupangCommand());
-        //addCommand(new BitCoinCommand());
+        addCommand(new Slotmachine());
 
         addCommand(new JoinCommand());  // 음악 봇 참가 명령어
         addCommand(new PlayCommand());

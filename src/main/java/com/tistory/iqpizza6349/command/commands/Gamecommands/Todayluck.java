@@ -180,7 +180,7 @@ public class Todayluck implements ICommand {
             channel.sendMessage(user.getName() + "님의 오늘의 운세는 " + card + " 입니다.\n").queue();
             channel.sendMessage("카드 뜻 : 희생 인내라는 뜻이있고, 무의미한 희생과 맹목의 뜻이 있어요.").queue();
             channel.sendMessage("\n운세 풀이 : 오늘은 명예로운 희생을 할 수 있을것 같은 날이에요. 무슨일이든 수행이라고 생각하면 좋을 거에요." +
-                    "\n하지만 구지 사서 고생할 필요는 없어요. 오늘은 무슨일이든 포기하지 말아보는게 좋아요.").queue();
+                    "\n하지만 굳이 사서 고생할 필요는 없어요. 오늘은 무슨일이든 포기하지 말아보는게 좋아요.").queue();
             updateToday(card,todate,user.getIdLong());
 
         }else if (card.equals(lucky.get(14))) {

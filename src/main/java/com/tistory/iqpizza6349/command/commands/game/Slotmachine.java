@@ -1,4 +1,4 @@
-package com.tistory.iqpizza6349.command.commands.Gamecommands;
+package com.tistory.iqpizza6349.command.commands.game;
 
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;

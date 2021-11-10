@@ -1,4 +1,4 @@
-package com.tistory.iqpizza6349.command.commands.Gamecommands;
+package com.tistory.iqpizza6349.command.commands.game;
 
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
@@ -6,7 +6,6 @@ import com.tistory.iqpizza6349.database.MySQLDatabase;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 
-import java.nio.channels.Channel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

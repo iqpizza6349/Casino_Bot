@@ -94,16 +94,16 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <schema id="5" parent="1" name="performance_schema">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="6" parent="1" name="star">
+    <schema id="6" parent="1" name="sakila">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="7" parent="1" name="sys">
+    <schema id="7" parent="1" name="springtest">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="8" parent="1" name="teambuilding">
+    <schema id="8" parent="1" name="sys">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <schema id="9" parent="1" name="test">
+    <schema id="9" parent="1" name="world">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
     <collation id="10" parent="1" name="armscii8_bin">
@@ -963,44 +963,47 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <collation id="281" parent="1" name="utf8mb4_zh_0900_as_cs">
       <Charset>utf8mb4</Charset>
     </collation>
-    <user id="282" parent="1" name="krapoi">
-      <Plugin>caching_sha2_password</Plugin>
-    </user>
-    <user id="283" parent="1" name="mysql.infoschema">
+    <user id="282" parent="1" name="mysql.infoschema">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="284" parent="1" name="mysql.session">
+    <user id="283" parent="1" name="mysql.session">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="285" parent="1" name="mysql.sys">
+    <user id="284" parent="1" name="mysql.sys">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="286" parent="1" name="root">
+    <user id="285" parent="1" name="root">
       <Host>localhost</Host>
     </user>
+    <table id="286" parent="3" name="guild_settings"/>
     <table id="287" parent="3" name="music"/>
-    <table id="288" parent="3" name="stock_info"/>
-    <table id="289" parent="3" name="user_info"/>
-    <column id="290" parent="287" name="id">
+    <table id="288" parent="3" name="user_info"/>
+    <column id="289" parent="286" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="291" parent="287" name="guild_id">
+    <column id="290" parent="286" name="guild_id">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="292" parent="287" name="current_song">
-    <column id="292" parent="286" name="prefix">
+    <column id="291" parent="286" name="slotmoney">
       <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>6000</DefaultExpression>
     </column>
-    <column id="293" parent="287" name="queue">
+    <column id="292" parent="286" name="prefix">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;.&apos;</DefaultExpression>
+    </column>
     <key id="293" parent="286" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
@@ -1025,18 +1028,18 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <Position>4</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="294" parent="287" name="repeat">
+    <column id="298" parent="287" name="repeat">
       <Position>5</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="295" parent="287" name="count">
+    <column id="299" parent="287" name="count">
       <Position>6</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
-      </column>
+    </column>
     <key id="300" parent="287" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
@@ -1048,90 +1051,53 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="302" parent="288" name="stock_name">
+    <column id="302" parent="288" name="user_id">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="299" parent="288" name="money">
+    <column id="303" parent="288" name="money">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>3000</DefaultExpression>
     </column>
-    <column id="300" parent="288" name="level">
+    <column id="304" parent="288" name="level">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>1</DefaultExpression>
     </column>
-    <column id="301" parent="288" name="bankruptcy">
+    <column id="305" parent="288" name="exp">
       <Position>5</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="306" parent="288" name="bankruptcy">
+      <Position>6</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <column id="302" parent="288" name="stock">
-      <Position>6</Position>
+    <column id="307" parent="288" name="stock">
+      <Position>7</Position>
       <DataType>text|0s</DataType>
     </column>
-    <column id="303" parent="288" name="web_hook_url">
-      <Position>7</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <key id="304" parent="288" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="308" parent="289" name="id">
-      <Position>1</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>null</SequenceIdentity>
-    </column>
-    <column id="309" parent="289" name="user_id">
-      <Position>2</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-      </column>
-    <column id="310" parent="289" name="money">
-      <Position>3</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>3000</DefaultExpression>
-    </column>
-    <column id="311" parent="289" name="level">
-      <Position>4</Position>
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>1</DefaultExpression>
-    </column>
-    <column id="309" parent="289" name="bankruptcy">
-      <Position>5</Position>
-      <DataType>tinyint(1)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>0</DefaultExpression>
-    </column>
-    <column id="310" parent="289" name="stock">
-      <Position>6</Position>
-      <DataType>text|0s</DataType>
-    </column>
-    <column id="311" parent="289" name="today">
-      <Position>7</Position>
-      <DataType>varchar(255)|0s</DataType>
-    </column>
-    <column id="315" parent="289" name="today">
+    <column id="308" parent="288" name="today">
       <Position>8</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="316" parent="289" name="web_hook_url">
-    <column id="317" parent="289" name="sword">
+    <column id="309" parent="288" name="web_hook_url">
+      <Position>9</Position>
+      <DataType>varchar(255)|0s</DataType>
+    </column>
+    <column id="310" parent="288" name="sword">
       <Position>10</Position>
       <DataType>varchar(255)|0s</DataType>
       <DefaultExpression>&apos;기본검&apos;</DefaultExpression>
     </column>
-    <key id="318" parent="289" name="PRIMARY">
+    <key id="311" parent="288" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

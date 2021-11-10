@@ -1,6 +1,5 @@
-package com.tistory.iqpizza6349.command.commands.Gamecommands;
+package com.tistory.iqpizza6349.command.commands.game;
 
-import com.fasterxml.jackson.core.json.JsonReadContext;
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
@@ -10,6 +9,7 @@ import net.dv8tion.jda.api.entities.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -299,7 +299,7 @@ public class Todayluck implements ICommand {
         try (final PreparedStatement preparedStatement = MySQLDatabase
                 .getConnection()
                 .prepareStatement("UPDATE user_info SET today = ? WHERE user_id = ?")) {
-            preparedStatement.setString(1, String.valueOf("null"));
+            preparedStatement.setNull(1, Types.NULL);
             preparedStatement.setString(2, String.valueOf(userId));
 
             preparedStatement.executeUpdate();
@@ -321,7 +321,7 @@ public class Todayluck implements ICommand {
             StringBuilder sb = new StringBuilder(t);
             sb.append(decimalFormat.format(calendar.get(Calendar.MONTH)));
             sb.append(decimalFormat.format(calendar.get(Calendar.YEAR)));
-            String todate = sb.toString();
+            String today = sb.toString();
             
             try (final  ResultSet resultSet = preparedStatement.executeQuery()){
                 if(resultSet.next()) {
@@ -333,7 +333,7 @@ public class Todayluck implements ICommand {
             }
 
             if (date != null) {
-                if(!todate.equals(date))
+                if(!today.equals(date))
                     return true;
             }
 

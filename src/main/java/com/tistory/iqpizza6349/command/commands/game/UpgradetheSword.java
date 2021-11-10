@@ -1,4 +1,4 @@
-package com.tistory.iqpizza6349.command.commands.Gamecommands;
+package com.tistory.iqpizza6349.command.commands.game;
 
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Random;
 
 public class UpgradetheSword implements ICommand {

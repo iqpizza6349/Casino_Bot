@@ -1,15 +1,16 @@
-package com.tistory.iqpizza6349.command.commands.Crawlercommands;
+package com.tistory.iqpizza6349.command.commands.information;
 
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
-import com.tistory.iqpizza6349.command.commands.jsoup.module.CrawlerModule;
+import com.tistory.iqpizza6349.jsoup.module.CrawlerModule;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.TextChannel;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class DictionaryCommand implements ICommand {
+public class CoupangCommand implements ICommand {
     @Override
     public void handle(CommandContext ctx) {
         CrawlerModule crawlerModule = new CrawlerModule();
@@ -31,36 +32,41 @@ public class DictionaryCommand implements ICommand {
         String keyWord = builder.toString();
         String urlKeyWord = urlBuilder.toString();
 
-        Iterator<String> results = crawlerModule.getCrawler("dictionary")
-                .handle(crawlerModule, "https://dict.naver.com/search.dict?dicQuery=" + urlKeyWord, null, "dictionary");
+        Iterator<String> results = crawlerModule.getCrawler("coupang")
+                .handle(crawlerModule, "https://www.coupang.com/np/search?component=&q=" + urlKeyWord, null, "coupang");
 
 
         if (results == null) {
-            channel.sendMessage("no information, " + "https://dict.naver.com/search.dict?dicQuery=" + urlKeyWord).queue();
+            channel.sendMessage("no information, " + "https://www.coupang.com/np/search?component=&q=" + urlKeyWord).queue();
             return;
         }
 
-        StringBuilder sb = new StringBuilder();        while (results.hasNext()) {
-            sb.append(results.next());
+        ArrayList<String> s = new ArrayList<>();
+        while (results.hasNext()) {
+            s.add(results.next());
         }
+        String st = s.get(2);
+
+
         try {
             EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle(keyWord, "https://dict.naver.com/search.dict?dicQuery=" + keyWord);
-            embedBuilder.addField("", sb.toString(), false);
-
+            embedBuilder.setTitle(keyWord, "https://www.coupang.com/np/search?component=&q=" + keyWord);
+            embedBuilder.addField("", s.get(0), false);
+            embedBuilder.addField("", s.get(1) + "원", false);
+            embedBuilder.setThumbnail(st);
             channel.sendMessageEmbeds(embedBuilder.build()).queue();
         } catch (IllegalArgumentException e) {
-            channel.sendMessage("too much information " + "https://dict.naver.com/search.dict?dicQuery=" + urlKeyWord).queue();
+            channel.sendMessage("too much information " + "https://www.coupang.com/np/search?component=&q=" + urlKeyWord).queue();
         }
     }
 
     @Override
     public String getName() {
-        return "dic";
+        return "cou";
     }
 
     @Override
     public String getHelp() {
-        return "Can use naver Dictionary";
+        return "serch at coupang site if you want Items price";
     }
 }

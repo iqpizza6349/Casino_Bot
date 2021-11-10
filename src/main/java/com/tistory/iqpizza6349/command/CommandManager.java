@@ -2,17 +2,14 @@ package com.tistory.iqpizza6349.command;
 
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.tistory.iqpizza6349.command.commands.*;
-import com.tistory.iqpizza6349.command.commands.Crawlercommands.BitCoinCommand;
-import com.tistory.iqpizza6349.command.commands.Crawlercommands.CoupangCommand;
-import com.tistory.iqpizza6349.command.commands.Crawlercommands.DictionaryCommand;
-import com.tistory.iqpizza6349.command.commands.Gamecommands.Slotmachine;
+import com.tistory.iqpizza6349.command.commands.information.CoupangCommand;
 import com.tistory.iqpizza6349.command.commands.game.Dice;
 import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
 import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
 import com.tistory.iqpizza6349.command.commands.information.*;
-import com.tistory.iqpizza6349.command.commands.Gamecommands.Todayluck;
-import com.tistory.iqpizza6349.command.commands.Gamecommands.UpgradetheSword;
-import com.tistory.iqpizza6349.command.commands.Gamecommands.sellcommand;
+import com.tistory.iqpizza6349.command.commands.game.Todayluck;
+import com.tistory.iqpizza6349.command.commands.game.UpgradetheSword;
+import com.tistory.iqpizza6349.command.commands.game.sellcommand;
 import com.tistory.iqpizza6349.command.commands.music.*;
 import com.tistory.iqpizza6349.command.commands.utility.Calculator;
 import com.tistory.iqpizza6349.command.commands.utility.Translate;
@@ -55,9 +52,8 @@ public class CommandManager {
 
         addCommand(new sellcommand());
         addCommand(new UpgradetheSword());
-        addCommand(new Nowmoney());
+        addCommand(new NowMoney());
         addCommand(new Todayluck());
-        addCommand(new DictionaryCommand());
         addCommand(new CoupangCommand());
         addCommand(new Slotmachine());
 

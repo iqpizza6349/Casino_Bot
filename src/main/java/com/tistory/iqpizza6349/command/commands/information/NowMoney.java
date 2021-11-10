@@ -1,4 +1,4 @@
-package com.tistory.iqpizza6349.command.commands;
+package com.tistory.iqpizza6349.command.commands.information;
 
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Nowmoney implements ICommand {
+public class NowMoney implements ICommand {
     @Override
     public void handle(CommandContext ctx) {
         User member = ctx.getMessage().getAuthor();

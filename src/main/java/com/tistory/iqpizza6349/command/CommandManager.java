@@ -15,7 +15,7 @@ import com.tistory.iqpizza6349.command.commands.Gamecommands.UpgradetheSword;
 import com.tistory.iqpizza6349.command.commands.Gamecommands.sellcommand;
 import com.tistory.iqpizza6349.command.commands.music.*;
 import com.tistory.iqpizza6349.command.commands.utility.Calculator;
-//import com.tistory.iqpizza6349.command.commands.utility.Translate;
+import com.tistory.iqpizza6349.command.commands.utility.Translate;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -60,10 +60,7 @@ public class CommandManager {
         addCommand(new DictionaryCommand());
         addCommand(new CoupangCommand());
         addCommand(new Slotmachine());
-        //addCommand(new BitCoinCommand());
 
-//          // 커스텀 prefix
-      
         addCommand(new JoinCommand());  // 음악 봇 참가 명령어
         addCommand(new PlayCommand());
         addCommand(new StopCommand());
@@ -82,7 +79,7 @@ public class CommandManager {
 
         // 유틸리티
         addCommand(new Calculator());
-//        addCommand(new Translate());
+        addCommand(new Translate());
 
         // information
         addCommand(new ExchangeRate());

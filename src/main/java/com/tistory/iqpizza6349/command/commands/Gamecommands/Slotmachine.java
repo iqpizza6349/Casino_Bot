@@ -117,15 +117,15 @@ public class Slotmachine implements ICommand {
 
         if(r1 == r2 && r2 == r3){
             updausermoney(slotmoeny + usermoney,user.getIdLong());
-            channel.sendMessage("ㅇㅇ").queue();
+            channel.sendMessage("축하드립니다. 당첨되셨습니다.").queue();
+            channel.sendMessage("\n금액 = "+slotmoeny).queue();
             reset(id);
         }else{
             String[] s = new String[3];
             s[0] = String.valueOf(r1);
             s[1] = String.valueOf(r2);
             s[2] = String.valueOf(r3);
-            channel.sendMessage("ㄴㄴ").queue();
-
+            channel.sendMessage("실패했습니다.").queue();
             updausermoney(getUserMoney(user.getIdLong()) - usermoney,user.getIdLong());
             slotmoeny += usermoney;
             setserverslotmoney(id,slotmoeny);

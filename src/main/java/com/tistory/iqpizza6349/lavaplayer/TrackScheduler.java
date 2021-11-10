@@ -9,6 +9,7 @@ import com.tistory.iqpizza6349.database.MySQLDatabase;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -29,7 +30,7 @@ public class TrackScheduler extends AudioEventAdapter {
             try (final PreparedStatement preparedStatement = MySQLDatabase
                     .getConnection()
                     .prepareStatement("UPDATE music SET queue = ? WHERE guild_id = ?")) {
-                preparedStatement.setString(1, "NULL");
+                preparedStatement.setNull(1, Types.NULL);
                 preparedStatement.setString(2, String.valueOf(guildId));
 
                 preparedStatement.executeUpdate();

@@ -76,7 +76,6 @@ public class TrackScheduler extends AudioEventAdapter {
                 return;
             }
             nextTrack();
-            setCurrentSong(guildId, track.getInfo().uri);
         }
     }
 

@@ -49,10 +49,8 @@ public class JoinCommand implements ICommand {
         int queueCount = PlayCommand.getQueueCount(textChannel.getGuild().getIdLong());
 
         if (getCurrentString(textChannel.getGuild().getIdLong()) == null) {
-            createDatabase(textChannel.getGuild().getIdLong());
             return;
         }
-
         String current = getCurrentString(textChannel.getGuild().getIdLong());
 
         String currentSong = String.join(" ", current);
@@ -124,19 +122,6 @@ public class JoinCommand implements ICommand {
             e.printStackTrace();
         }
         return null;
-    }
-
-    private void createDatabase(long guildId) {
-        try (final PreparedStatement preparedStatement = MySQLDatabase
-                .getConnection()
-                .prepareStatement("INSERT INTO music(guild_id) VALUES(?)")){
-            preparedStatement.setString(1, String.valueOf(guildId));
-
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     private boolean isUrl(String url) {

@@ -35,7 +35,6 @@ public class CoupangCommand implements ICommand {
         Iterator<String> results = crawlerModule.getCrawler("coupang")
                 .handle(crawlerModule, "https://www.coupang.com/np/search?component=&q=" + urlKeyWord, null, "coupang");
 
-
         if (results == null) {
             channel.sendMessage("no information, " + "https://www.coupang.com/np/search?component=&q=" + urlKeyWord).queue();
             return;
@@ -62,7 +61,7 @@ public class CoupangCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "cou";
+        return "coupang";
     }
 
     @Override

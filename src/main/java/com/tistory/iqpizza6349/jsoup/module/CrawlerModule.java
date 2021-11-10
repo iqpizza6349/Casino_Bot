@@ -24,6 +24,7 @@ public class CrawlerModule {
         addCrawler("exchangerate", new ExchangeRateCrawler());
         addCrawler("namuwiki", new NamuWikiCrawler());
         addCrawler("dictionary", new DictionaryCrawler());
+        addCrawler("coupang", new CoupangCrawler());
     }
 
     public String getUrl() {

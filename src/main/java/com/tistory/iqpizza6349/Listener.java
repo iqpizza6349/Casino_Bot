@@ -72,11 +72,11 @@ public class Listener extends ListenerAdapter {
             else {
                 if (event.getReactionEmote().getName().equals(FlipCoin.head)) {
                     FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), true);
-                    channel.sendMessageFormat("#%s, you bet to head", user).queue();
+                    channel.sendMessageFormat("%s, you bet to head", user).queue();
                 }
                 else if (event.getReactionEmote().getName().equals(FlipCoin.tail)) {
                     FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), false);
-                    channel.sendMessageFormat("#%s, you bet to tail", user).queue();
+                    channel.sendMessageFormat("%s, you bet to tail", user).queue();
                 }
             }
         }
@@ -87,11 +87,11 @@ public class Listener extends ListenerAdapter {
             else {
                 if (event.getReactionEmote().getName().equals(OddAndEven.odd)) {
                     OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), true);
-                    channel.sendMessageFormat("#%s, you bet to odd", user).queue();
+                    channel.sendMessageFormat("%s, you bet to odd", user).queue();
                 }
                 else if (event.getReactionEmote().getName().equals(OddAndEven.even)) {
                     OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), false);
-                    channel.sendMessageFormat("#%s, you bet to even", user).queue();
+                    channel.sendMessageFormat("%s, you bet to even", user).queue();
                 }
             }
         }

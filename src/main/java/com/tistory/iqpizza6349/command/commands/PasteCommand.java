@@ -47,7 +47,7 @@ public class PasteCommand implements ICommand {
                             .appendDescription(paste.getBody())
                             .appendDescription("```");
 
-                    channel.sendMessage(builder.build()).queue();
+                    channel.sendMessageEmbeds(builder.build()).queue();
                 })
         );
     }

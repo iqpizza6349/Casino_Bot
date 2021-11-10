@@ -47,14 +47,14 @@ public class WeatherCrawler implements Crawlers {
             strings.add(humid);
 
             Elements dustInfos = document.select("div.report_card_wrap");
-            Elements dust = dustInfos.select("li.item_today.level1");
+            Elements dust = dustInfos.select("li.item_today.level2");
             String currentDust = dust.select("span.txt").get(0).text();
             strings.add(currentDust);
             String currentFineDust = dust.select("span.txt").get(1).text();
             strings.add(currentFineDust);
 
-            Elements UV_rays = dustInfos.select("li.item_today.level2");
-            String currentUV_rays = UV_rays.select("span.txt").get(0).text();
+            Element UV_rays = dustInfos.select("li.item_today.level2").get(2);
+            String currentUV_rays = UV_rays.select("span.txt").text();
             strings.add(currentUV_rays);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("없는 위치입니다!");

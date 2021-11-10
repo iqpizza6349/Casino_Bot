@@ -17,7 +17,7 @@ public class OddAndEven implements ICommand {
     public void handle(CommandContext ctx) {
         TextChannel channel = ctx.getChannel();
 
-        if (FlipCoin.bettingUserMap.containsKey(channel.getGuild().getIdLong())) {
+        if (bettingUserMap.containsKey(channel.getGuild().getIdLong())) {
             channel.sendMessage("Already playing game!").queue();
             return;
         }
@@ -50,7 +50,7 @@ public class OddAndEven implements ICommand {
                             channel.sendMessageFormat("<@%s>, you lose 500 Cash", user).queue();
                         }
                     }
-                    bettingUserMap.put(channel.getGuild().getIdLong(), new HashMap<>());
+                    bettingUserMap.remove(channel.getGuild().getIdLong());
 
                 });
         bettingUserMap.put(channel.getGuild().getIdLong(), new HashMap<>());

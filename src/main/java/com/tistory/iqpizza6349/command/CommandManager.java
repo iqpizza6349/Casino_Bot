@@ -2,14 +2,9 @@ package com.tistory.iqpizza6349.command;
 
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.tistory.iqpizza6349.command.commands.*;
+import com.tistory.iqpizza6349.command.commands.game.*;
 import com.tistory.iqpizza6349.command.commands.information.CoupangCommand;
-import com.tistory.iqpizza6349.command.commands.game.Dice;
-import com.tistory.iqpizza6349.command.commands.game.FlipCoin;
-import com.tistory.iqpizza6349.command.commands.game.OddAndEven;
 import com.tistory.iqpizza6349.command.commands.information.*;
-import com.tistory.iqpizza6349.command.commands.game.Todayluck;
-import com.tistory.iqpizza6349.command.commands.game.UpgradetheSword;
-import com.tistory.iqpizza6349.command.commands.game.sellcommand;
 import com.tistory.iqpizza6349.command.commands.music.*;
 import com.tistory.iqpizza6349.command.commands.utility.Calculator;
 import com.tistory.iqpizza6349.command.commands.utility.Translate;

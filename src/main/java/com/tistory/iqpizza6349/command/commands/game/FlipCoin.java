@@ -50,7 +50,7 @@ public class FlipCoin implements ICommand {
                             channel.sendMessageFormat("<@%s>, you lose 500 Cash", user).queue();
                         }
                     }
-                    bettingUserMap.put(channel.getGuild().getIdLong(), new HashMap<>());
+                    bettingUserMap.remove(channel.getGuild().getIdLong());
 
                 });
         bettingUserMap.put(channel.getGuild().getIdLong(), new HashMap<>());

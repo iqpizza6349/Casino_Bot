@@ -34,7 +34,7 @@ public class WeatherSearcher implements ICommand {
         String location = messages.get(0);
 
         Iterator<String> results = crawlerModule.getCrawler("weather")
-                .handle(crawlerModule, "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=" + location + "날씨", null, "weather");
+                .handle(crawlerModule, "https://search.naver.com/search.naver?sm=top_hty&fbm=1&ie=utf8&query=" + location + "%20날씨", null, "weather");
 
         ArrayList<String> result = new ArrayList<>();
         EmbedBuilder builder = new EmbedBuilder();

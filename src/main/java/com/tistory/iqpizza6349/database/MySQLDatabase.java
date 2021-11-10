@@ -26,7 +26,7 @@ public class MySQLDatabase {
             ");");
 
 
-            statement.execute("CREATE TABLE IF NOT EXISTS `music` (" +
+            statement.execute("CREATE TABLE IF NOT EXISTS music (" +
                   "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
                   "`guild_id` VARCHAR(20) NOT NULL," +
                   "`current_song` VARCHAR(255)," +
@@ -35,7 +35,7 @@ public class MySQLDatabase {
                   "`count` INT(40) NOT NULL DEFAULT 0" +
             ");");
 
-            statement.execute("CREATE TABLE IF NOT EXISTS `user_info` (" +
+            statement.execute("CREATE TABLE IF NOT EXISTS user_info (" +
                   "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
                   "`user_id` VARCHAR(20) NOT NULL, " +
                   "`money` INT(11) NOT NULL DEFAULT 3000," +

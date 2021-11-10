@@ -1,7 +1,5 @@
 package com.tistory.iqpizza6349.command;
 
-import org.json.simple.parser.ParseException;
-
 import java.util.List;
 
 public interface ICommand {

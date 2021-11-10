@@ -5,6 +5,7 @@ import com.tistory.iqpizza6349.command.ICommand;
 import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Dice implements ICommand {
 

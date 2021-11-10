@@ -10,9 +10,11 @@ import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 
+import java.lang.reflect.Type;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 public class StopCommand implements ICommand {
 
@@ -67,8 +69,8 @@ public class StopCommand implements ICommand {
         try (final PreparedStatement insertCurrentSong = MySQLDatabase
                 .getConnection()
                 .prepareStatement("UPDATE music SET current_song = ?, queue = ?, count = ? WHERE guild_id = ?")) {
-            insertCurrentSong.setString(1, "NULL");
-            insertCurrentSong.setString(2, "NULL");
+            insertCurrentSong.setNull(1, Types.NULL);
+            insertCurrentSong.setNull(2, Types.NULL);
             insertCurrentSong.setString(3, String.valueOf(0));
             insertCurrentSong.setString(4, stringGuild_id);
             insertCurrentSong.executeUpdate();

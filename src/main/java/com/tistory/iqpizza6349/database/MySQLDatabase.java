@@ -14,7 +14,7 @@ public class MySQLDatabase {
     private static final Logger LOGGER = LoggerFactory.getLogger(MySQLDatabase.class);
 
     static {
-        Statement statement = null;
+        Statement statement;
         try {
             statement = getConnection().createStatement();
             String defaultPrefix = Config.PREFIX;
@@ -51,7 +51,6 @@ public class MySQLDatabase {
             // PK, name, price, maximum, lowest, 상승/하락 세
             statement.execute("CREATE TABLE IF NOT EXISTS `stock_info` (" +
                     "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
-<<<<<<< HEAD
                     "`user_id` VARCHAR(20) NOT NULL, " +
                     "`money` INT(11) NOT NULL DEFAULT 3000," +
                     "`level` INT(11) NOT NULL DEFAULT 1," +
@@ -59,15 +58,6 @@ public class MySQLDatabase {
                     "`stock` TEXT null ," +
                     "`web_hook_url` VARCHAR(255) null" +
                     ");");
-=======
-                    "`stock_name` VARCHAR(20) NOT NULL," +
-                    "`price` FLOAT NOT NULL DEFAULT 100.0," +
-                    "`maximum` FLOAT NOT NULL DEFAULT 100.0," +
-                    "`lowest` FLOAT NOT NULL DEFAULT 100.0," +
-                    "`trend` FLOAT NOT NULL DEFAULT 0.0" +
-            ");");
-
->>>>>>> ace6c25c5bc1be9eaa734fb9cce1bec340b6a05f
             LOGGER.info("initialized mysql connected!");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
@@ -75,7 +65,7 @@ public class MySQLDatabase {
     }
 
     public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        Connection connection = null;
+        Connection connection;
 
         String url = "jdbc:mysql://localhost:3306/JDBC?serverTimezone=UTC";
         String name = Config.USER_NAME;

@@ -15,7 +15,7 @@ public class JokeCommand implements ICommand {
         TextChannel channel = ctx.getChannel();
         WebUtils.ins.getJSONObject("https://apis.duncte123.me/meme").async((json) -> {
             if (!json.get("success").asBoolean()) {
-                channel.sendMessage("Something went wrong, try again later").queue();
+                channel.sendMessage("오류가 발생했습니다. 나중에 다시 시도해주세요").queue();
                 System.out.println(json);
                 return;
             }
@@ -36,11 +36,11 @@ public class JokeCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "joke";
+        return "농담";
     }
 
     @Override
     public String getHelp() {
-        return "Shows a random joke";
+        return "랜덤 농담을 reddit 에서 가져옵니다.";
     }
 }

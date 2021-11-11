@@ -17,7 +17,7 @@ public class Translate implements ICommand {
         List<String> messages = ctx.getStrings();
 
         if (messages.isEmpty()) {
-            channel.sendMessage("no arguments").queue();
+            channel.sendMessage("인자값이 없습니다.").queue();
             return;
         }
 
@@ -40,17 +40,17 @@ public class Translate implements ICommand {
             String s = (String) parse_result.get("translatedText");
             channel.sendMessage(s).queue();
         } catch (Exception e) {
-            channel.sendMessage("[ERROR]").queue();
+            channel.sendMessage("[오류]").queue();
         }
     }
 
     @Override
     public String getName() {
-        return "translate";
+        return "번역";
     }
 
     @Override
     public String getHelp() {
-        return "Translate only kr to en";
+        return "한국어에서 영어로만 번역 가능합니다.";
     }
 }

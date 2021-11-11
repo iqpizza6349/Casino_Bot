@@ -19,17 +19,17 @@ public class ExchangeRate implements ICommand {
         TextChannel channel = ctx.getChannel();
 
         if (messages.isEmpty()) {
-            channel.sendMessage("no argument value").queue();
+            channel.sendMessage("인자값이 없습니다.").queue();
             return;
         }
 
         if (messages.size() < 2) {
-            channel.sendMessage("Insufficient argument values.").queue();
+            channel.sendMessage("인자값이 부족합니다.").queue();
             return;
         }
 
         if (messages.size() > 3) {
-            channel.sendMessage("too many arguments!").queue();
+            channel.sendMessage("인자값이 너무 많습니다.").queue();
             return;
         }
 
@@ -44,7 +44,7 @@ public class ExchangeRate implements ICommand {
         }
 
         if (strings.isEmpty()) {
-            channel.sendMessage("Can't found kind of " + currentMoneyType).queue();
+            channel.sendMessage(currentMoneyType + "를 찾지 못하였습니다.").queue();
             return;
         }
 
@@ -53,33 +53,33 @@ public class ExchangeRate implements ICommand {
         try {
             amount = Double.parseDouble(ctx.getStrings().get(0));
         } catch (NumberFormatException e) {
-            channel.sendMessage("arguments have no digits!").queue();
+            channel.sendMessage("인자값에 숫자가 포함되어있지 않습니다.").queue();
             return;
         }
 
         if (amount < 1) {
-            channel.sendMessage("zero or minus is not available to exchange").queue();
+            channel.sendMessage("0이하의 숫자는 환율에 적용되지 않는 수입니다.").queue();
             return;
         }
 
         if (amount > 10000000) {
-            channel.sendMessage("It's too big amount to exchange calculate").queue();
+            channel.sendMessage("환율 계산에 너무나도 큰 수 입니다.").queue();
             return;
         }
 
         double exchangeRateResult = Double.parseDouble(strings.get(0).replaceAll("[,]", ""));
 
-        channel.sendMessage(amount + currentMoneyType + " is available to exchange to " + amount * exchangeRateResult + "won").queue();
+        channel.sendMessage(amount + currentMoneyType + "는 " + amount * exchangeRateResult + "원으로 환산 가능합니다.").queue();
     }
 
     @Override
     public String getName() {
-        return "exchangerate";
+        return "환율";
     }
 
     @Override
     public String getHelp() {
-        return "Show the exchange rate of the currency is converted into 'won'.\n" +
+        return "외화를 대한민국 원으로 환산할 수 있습니다.\n" +
                 "Usage: (amount) (foreign currency name)\n" +
                 "Example) 1 dollar";
     }

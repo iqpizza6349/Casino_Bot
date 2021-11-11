@@ -19,7 +19,7 @@ public class Dictionary implements ICommand {
         TextChannel channel = ctx.getChannel();
 
         if (messages.isEmpty()) {
-            channel.sendMessage("no argument value").queue();
+            channel.sendMessage("인자값이 부족합니다.").queue();
             return;
         }
 
@@ -33,7 +33,7 @@ public class Dictionary implements ICommand {
                 .handle(crawlerModule, "https://dict.naver.com/search.dict?dicQuery=" + keyWord, null, "dictionary");
 
         if (results == null) {
-            channel.sendMessage("no information, " + "https://dict.naver.com/search.dict?dicQuery=" + keyWord).queue();
+            channel.sendMessage("정보를 불어오지 못했습니다., " + "https://dict.naver.com/search.dict?dicQuery=" + keyWord).queue();
             return;
         }
 
@@ -50,20 +50,17 @@ public class Dictionary implements ICommand {
 
             channel.sendMessageEmbeds(embedBuilder.build()).queue();
         } catch (IllegalArgumentException e) {
-            channel.sendMessage("too much information " + "https://dict.naver.com/search.dict?dicQuery=" + keyWord).queue();
+            channel.sendMessage("정보가 너무 많습니다. 링크를 참조해주세요. " + "https://dict.naver.com/search.dict?dicQuery=" + keyWord).queue();
         }
-
-
-
     }
 
     @Override
     public String getName() {
-        return "dict";
+        return "사전";
     }
 
     @Override
     public String getHelp() {
-        return "Dict";
+        return "네이버 사전에서 단어를 찾을 수 있습니다.";
     }
 }

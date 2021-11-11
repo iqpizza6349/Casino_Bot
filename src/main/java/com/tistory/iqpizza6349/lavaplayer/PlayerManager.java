@@ -48,11 +48,12 @@ public class PlayerManager {
             public void trackLoaded(AudioTrack audioTrack) {
                 musicManager.scheduler.queue(audioTrack, textChannel.getGuild().getIdLong());
 
-                textChannel.sendMessage("Adding to queue: `")
-                        .append(audioTrack.getInfo().title)
-                        .append("` by `")
+                textChannel.sendMessage("`")
                         .append(audioTrack.getInfo().author)
+                        .append(" `업로더 님의`")
+                        .append(audioTrack.getInfo().title)
                         .append("`")
+                        .append("를 큐에 추가하였습니다.")
                         .queue();
             }
 
@@ -63,11 +64,12 @@ public class PlayerManager {
                 for (final AudioTrack track : tracks) {
                     musicManager.scheduler.queue(track, textChannel.getGuild().getIdLong());
 
-                    textChannel.sendMessage("Adding to queue: `")
-                            .append(track.getInfo().title)
-                            .append("` by `")
+                    textChannel.sendMessage("`")
                             .append(track.getInfo().author)
+                            .append(" `업로더 님의`")
+                            .append(track.getInfo().title)
                             .append("`")
+                            .append("를 큐에 추가하였습니다.")
                             .queue();
                     break;
                 }

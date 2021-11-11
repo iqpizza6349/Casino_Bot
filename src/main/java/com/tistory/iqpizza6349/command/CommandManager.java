@@ -46,11 +46,11 @@ public class CommandManager {
         addCommand(new SetPrefixCommand()); // 커스텀 prefix
 
         addCommand(new sellcommand());
-        addCommand(new UpgradetheSword());
+        addCommand(new UpgradeSword());
         addCommand(new NowMoney());
-        addCommand(new Todayluck());
+        addCommand(new TodayLuck());
         addCommand(new CoupangCommand());
-        addCommand(new Slotmachine());
+        addCommand(new SlotMachine());
 
         addCommand(new JoinCommand());  // 음악 봇 참가 명령어
         addCommand(new PlayCommand());
@@ -60,8 +60,6 @@ public class CommandManager {
         addCommand(new NowPlayingCommand());
         addCommand(new QueueCommand());
         addCommand(new RepeatCommand());
-
-        addCommand(new EventWaiterCommand(waiter));
 
         // 게임 명령어
         addCommand(new FlipCoin());
@@ -222,7 +220,7 @@ public class CommandManager {
         if (exp == levelExpArray[lvl-1]) {
             // 대충 레벨 업함
             updateLevel(userId, lvl+1);
-            channel.sendMessageFormat("<@%s>, level up (%d -> %d)", userId, lvl-1, lvl).queue();
+            channel.sendMessageFormat("<@%s>, %d에서 %d로 레벨 업 하셨습니다.", userId, lvl-1, lvl).queue();
         }
         else {
             updateExp(userId, exp+5);

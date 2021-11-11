@@ -18,15 +18,15 @@ public class OddAndEven implements ICommand {
         TextChannel channel = ctx.getChannel();
 
         if (bettingUserMap.containsKey(channel.getGuild().getIdLong())) {
-            channel.sendMessage("Already playing game!").queue();
+            channel.sendMessage("이미 게임을 진행 중입니다.").queue();
             return;
         }
 
-        channel.sendMessage("Please choose which side you want to bet on for 20 seconds before starting to show the number.\n")
-                .append("Bet to Odd: ")
+        channel.sendMessage("20초가 지나기 전에 홀수 혹은 짝수에 배팅하여주세요.\n")
+                .append("홀수에 배팅하실려면 눌러주세요: ")
                 .append(odd)
                 .append("\n")
-                .append("Bet to Even: ")
+                .append("짝수에 배팅하실려면 눌러주세요: ")
                 .append(even)
                 .queue((msg) -> {
                     msg.addReaction(odd).queue();
@@ -44,10 +44,10 @@ public class OddAndEven implements ICommand {
 
                     for (long user : bettingUserMap.get(channel.getGuild().getIdLong()).keySet()) {
                         if (bettingUserMap.get(channel.getGuild().getIdLong()).get(user) == number) {
-                            channel.sendMessageFormat("<@%s>, you earn 500 Cash", user).queue();
+                            channel.sendMessageFormat("<@%s>, 축하드립니다. 맞추셨습니다.", user).queue();
                         }
                         else {
-                            channel.sendMessageFormat("<@%s>, you lose 500 Cash", user).queue();
+                            channel.sendMessageFormat("<@%s>, 안타깝습니다. 틀리셨습니다.", user).queue();
                         }
                     }
                     bettingUserMap.remove(channel.getGuild().getIdLong());
@@ -58,13 +58,12 @@ public class OddAndEven implements ICommand {
 
     @Override
     public String getName() {
-        return "oddandeven";
+        return "홀짝";
     }
 
     @Override
     public String getHelp() {
-        return "Play game 'odd and even'\n" +
-                "You can place bets by tapping the emotion\n" +
-                "(The bet is fixed at 500 cash.)";
+        return "홀짝 게임을 합니다\n" +
+                "이모티콘을 눌러 홀수 혹은 짝수를 선택하실 수 있으십니다.";
     }
 }

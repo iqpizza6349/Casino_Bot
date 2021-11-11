@@ -23,7 +23,7 @@ public class MovieSearcher implements ICommand {
         int i = 1;
 
         EmbedBuilder builder = new EmbedBuilder();
-        builder.setTitle("CGV top 7 movies");
+        builder.setTitle("CGV 탑 7 영화 목록");
 
         while (results.hasNext()) {
             builder.addField("No#" + String.valueOf(i++), results.next(), false);
@@ -34,11 +34,11 @@ public class MovieSearcher implements ICommand {
 
     @Override
     public String getName() {
-        return "movie";
+        return "영화";
     }
 
     @Override
     public String getHelp() {
-        return "Search for CGV top 7 movies currently being screened";
+        return "현재 상영 중인 CGV 영화 7편을 검색합니다.";
     }
 }

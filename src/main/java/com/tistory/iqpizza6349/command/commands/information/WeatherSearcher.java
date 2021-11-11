@@ -22,12 +22,12 @@ public class WeatherSearcher implements ICommand {
         TextChannel channel = ctx.getChannel();
 
         if (messages.isEmpty()) {
-            channel.sendMessage("no argument value").queue();
+            channel.sendMessage("인자값이 없습니다.").queue();
             return;
         }
 
         if (messages.size() > 2) {
-            channel.sendMessage("Too many arguments entered!").queue();
+            channel.sendMessage("인자값이 너무 많습니다.").queue();
             return;
         }
 
@@ -43,7 +43,7 @@ public class WeatherSearcher implements ICommand {
             result.add(results.next());
         }
         if (result.isEmpty() || result.size() <= 7) {
-            channel.sendMessage("해당 위치의 날씨를 가져올 수 없습니다!").queue();
+            channel.sendMessage("해당 위치의 날씨를 불러올 수 없습니다.").queue();
             return;
         }
 
@@ -62,12 +62,12 @@ public class WeatherSearcher implements ICommand {
 
     @Override
     public String getName() {
-        return "weather";
+        return "날씨";
     }
 
     @Override
     public String getHelp() {
-        return "Search weather for that location (only korea)\n" +
+        return "해당 위치의 날씨 정보를 검색합니다. (한국만 가능하고, 특정 정보가 부족하여 불러올 수 없을 수 도 있습니다.)\n" +
                 "Usage: " + Config.PREFIX + "weather [location]";
     }
 }

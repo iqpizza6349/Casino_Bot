@@ -11,12 +11,12 @@ public class Calculator implements ICommand {
         TextChannel channel = ctx.getChannel();
 
         if (ctx.getStrings().size() < 3) {
-            channel.sendMessage("Insufficient argument values.").queue();
+            channel.sendMessage("인자값이 부족합니다. [인자값이 총 3개 필요합니다.]").queue();
             return;
         }
 
         if (ctx.getStrings().size() > 3) {
-            channel.sendMessage("too many arguments!").queue();
+            channel.sendMessage("인자값이 너무 많습니다. [인자값이 총 3개 필요합니다]").queue();
             return;
         }
         double number1;
@@ -26,7 +26,7 @@ public class Calculator implements ICommand {
             number1 = Double.parseDouble(ctx.getStrings().get(0));
             number2 = Double.parseDouble(ctx.getStrings().get(2));
         } catch (NumberFormatException e) {
-            channel.sendMessage("arguments have no digits!").queue();
+            channel.sendMessage("계산하려는 인자값 중 하나 이상이 숫자가 아닙니다.").queue();
             return;
         }
 
@@ -37,24 +37,24 @@ public class Calculator implements ICommand {
 
         boolean hasOperator = plus == -1 && minus == -1 && multi == -1 && divide == -1;
         if (hasOperator) {
-            channel.sendMessage("arguments have no operator!").queue();
+            channel.sendMessage("계산하기 위한 연산자가 없습니다.").queue();
             return;
         }
 
         if (plus != -1) {
-            channel.sendMessage("> [Calculated] " + number1 + " + " + number2 + " = " + (number1 + number2)).queue();
+            channel.sendMessage("> [계산결과] " + number1 + " + " + number2 + " = " + (number1 + number2)).queue();
         }
         else if (minus != -1) {
-            channel.sendMessage("> [Calculated] " + number1 + " - " + number2 + " = " + (number1 - number2)).queue();
+            channel.sendMessage("> [계산결과] " + number1 + " - " + number2 + " = " + (number1 - number2)).queue();
         }
         else if (multi != -1){
-            channel.sendMessage("> [Calculated] " + number1 + " * " + number2 + " = " + (number1 * number2)).queue();
+            channel.sendMessage("> [계산결과] " + number1 + " * " + number2 + " = " + (number1 * number2)).queue();
         }
         else {
             try {
-                channel.sendMessage("> [Calculated] " + number1 + " / " + number2 + " = " + (number1 / number2)).queue();
+                channel.sendMessage("> [계산결과] " + number1 + " / " + number2 + " = " + (number1 / number2)).queue();
             } catch (ArithmeticException e) {
-                channel.sendMessage("Can't calculate `/` by zero").queue();
+                channel.sendMessage("0을 나눌 순 없습니다.").queue();
             }
         }
 
@@ -62,12 +62,12 @@ public class Calculator implements ICommand {
 
     @Override
     public String getName() {
-        return "calculate";
+        return "계산";
     }
 
     @Override
     public String getHelp() {
-        return "Calculate two numbers with operator (only +, -, *, /)\n" +
+        return "두 숫자를 연산자를 활용하여 계산합니다. (+, -, *, / 만 사용 가능합니다.)\n" +
                 "Usage: (number1) (operator) (number2)\n" +
                 "Example: 1 + 3";
     }

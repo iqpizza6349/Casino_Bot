@@ -51,7 +51,6 @@ public class sellcommand implements ICommand {
             }
     }
 
-
     private String getSwordType(long userId) {
         try (final PreparedStatement preparedStatement = MySQLDatabase
                 .getConnection()
@@ -112,11 +111,11 @@ public class sellcommand implements ICommand {
 
     @Override
     public String getName() {
-        return "sell";
+        return "판매";
     }
 
     @Override
     public String getHelp() {
-        return "if you want, you can sell the sword";
+        return "강화한 검들을 팔 수 있습니다.";
     }
 }

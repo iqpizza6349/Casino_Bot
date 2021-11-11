@@ -98,11 +98,11 @@ public class SchoolMealsSearcher implements ICommand {
 
     @Override
     public String getName() {
-        return "schoolmeals";
+        return "대소고급식";
     }
 
     @Override
     public String getHelp() {
-        return "Search 'daegu-software' High School meals today";
+        return "오늘 대소고 급식을 검색합니다. [ 오류가 있을 수 있습니다.] ";
     }
 }

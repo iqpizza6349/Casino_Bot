@@ -3,7 +3,6 @@ package com.tistory.iqpizza6349.command.commands.game;
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 
@@ -13,17 +12,15 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
-public class Slotmachine implements ICommand {
+public class SlotMachine implements ICommand {
     @Override
     public void handle(CommandContext ctx) {
         User user = ctx.getMessage().getAuthor();
         TextChannel channel = ctx.getChannel();
         long id = ctx.getGuild().getIdLong();
 
-
-        int slotmoeny = getserverslotmoney(id);
+        int slotmoeny = getServerSlotMoney(id);
         List<String> messages = ctx.getStrings();
         char tmp;
 
@@ -39,12 +36,11 @@ public class Slotmachine implements ICommand {
                 return;
             }
         }
-        int usermoney = Integer.parseInt(messages.get(0));
-        if (getUserMoney(user.getIdLong()) < usermoney) {
+        int userMoney = Integer.parseInt(messages.get(0));
+        if (getUserMoney(user.getIdLong()) < userMoney) {
             channel.sendMessage("돈이 부족합니다.").queue();
             return;
         }
-
 
         Random rand1 = new Random();
         Random rand2 = new Random();
@@ -54,86 +50,81 @@ public class Slotmachine implements ICommand {
         int r2 = rand2.nextInt(10);
         int r3 = rand3.nextInt(10);
 
-
         channel.sendMessageFormat(" { [%d] | [%d] | [%d] } ", r1, r2, r3).queue((msg) -> {
             msg.editMessageFormat(" { [%d] | [%d] | [%d] } ",
                     1 + rand1.nextInt(10),
                     1 + rand2.nextInt(10),
                     1 + rand3.nextInt(10)
-                ).queueAfter(200L, TimeUnit.MILLISECONDS, (msg1) ->
+            ).queueAfter(1L, TimeUnit.MILLISECONDS, (msg1) ->
                     msg1.editMessageFormat(" { [%d] | [%d] | [%d] } ",
                             1 + rand1.nextInt(10),
                             1 + rand2.nextInt(10),
                             1 + rand3.nextInt(10)
-                    ).queueAfter(200L, TimeUnit.MILLISECONDS, (msg2) ->
+                    ).queueAfter(1L, TimeUnit.MILLISECONDS, (msg2) ->
                             msg2.editMessageFormat(" { [%d] | [%d] | [%d] } ",
                                     1 + rand1.nextInt(10),
                                     1 + rand2.nextInt(10),
                                     1 + rand3.nextInt(10)
-                            ).queueAfter(200L, TimeUnit.MILLISECONDS, (msg3) ->
+                            ).queueAfter(1L, TimeUnit.MILLISECONDS, (msg3) ->
                                     msg3.editMessageFormat(" { [%d] | [%d] | [%d] } ",
                                             1 + rand1.nextInt(10),
                                             1 + rand2.nextInt(10),
                                             1 + rand3.nextInt(10)
-                                    ).queueAfter(200L, TimeUnit.MILLISECONDS, (msg4) ->
+                                    ).queueAfter(1L, TimeUnit.MILLISECONDS, (msg4) ->
                                             msg4.editMessageFormat(" { [%d] | [%d] | [%d] } ",
                                                     1 + rand1.nextInt(10),
                                                     1 + rand2.nextInt(10),
                                                     1 + rand3.nextInt(10)
-                                            ).queueAfter(200L, TimeUnit.MILLISECONDS, (msg5) ->
+                                            ).queueAfter(1L, TimeUnit.MILLISECONDS, (msg5) ->
                                                     msg5.editMessageFormat(" { [%d] | [%d] | [%d] } ",
                                                             1 + rand1.nextInt(10),
                                                             1 + rand2.nextInt(10),
                                                             1 + rand3.nextInt(10)
-                                                    ).queueAfter(200L, TimeUnit.MILLISECONDS, (msg6) ->
+                                                    ).queueAfter(1L, TimeUnit.MILLISECONDS, (msg6) ->
                                                             msg6.editMessageFormat(" { [%d] | [%d] | [%d] } ",
                                                                     1 + rand1.nextInt(10),
                                                                     1 + rand2.nextInt(10),
                                                                     1 + rand3.nextInt(10)
-                                                            ).queueAfter(200L, TimeUnit.MILLISECONDS, (msg7) ->
+                                                            ).queueAfter(1L, TimeUnit.MILLISECONDS, (msg7) ->
                                                                     msg7.editMessageFormat(" { [%d] | [%d] | [%d] } ",
                                                                             1 + rand1.nextInt(10),
                                                                             1 + rand2.nextInt(10),
                                                                             1 + rand3.nextInt(10)
-                                                                    ).queueAfter(200L, TimeUnit.MILLISECONDS, (msg8) ->
+                                                                    ).queueAfter(1L, TimeUnit.MILLISECONDS, (msg8) ->
                                                                             msg8.editMessageFormat(" { [%d] | [%d] | [%d] } ",
                                                                                     1 + rand1.nextInt(10),
                                                                                     1 + rand2.nextInt(10),
                                                                                     1 + rand3.nextInt(10)
-                                                                            ).queueAfter(200L, TimeUnit.MILLISECONDS, (msg9) ->
+                                                                            ).queueAfter(1L, TimeUnit.MILLISECONDS, (msg9) ->
                                                                                     msg9.editMessageFormat(" { [%d] | [%d] | [%d] } ",
                                                                                             1 + rand1.nextInt(10),
                                                                                             1 + rand2.nextInt(10),
                                                                                             1 + rand3.nextInt(10)
-                                                                                    ).queueAfter(200L, TimeUnit.MILLISECONDS, (msg10) ->
+                                                                                    ).queueAfter(1L, TimeUnit.MILLISECONDS, (msg10) ->
                                                                                             msg10.editMessageFormat(" { [%d] | [%d] | [%d] } ",
-                                                                                            1 + rand1.nextInt(10),
-                                                                                            1 + rand2.nextInt(10),
-                                                                                            1 + rand3.nextInt(10)
-                                                                                    ).queueAfter(200L, TimeUnit.MILLISECONDS)))))))))));
-            });
+                                                                                                    r1,
+                                                                                                    r2,
+                                                                                                    r3
+                                                                                            ).queueAfter(1L, TimeUnit.MILLISECONDS, (last) -> {
+                                                                                                        if(r1 == r2 && r2 == r3){
+                                                                                                            channel.sendMessage("축하드립니다. 당첨되셨습니다.").queue();
+                                                                                                        }else{
+                                                                                                            channel.sendMessage("실패했습니다.").queue();
+                                                                                                        }
+                                                                                                    }
+                                                                                            )))))))))));
+        });
 
-
-
-        if(r1 == r2 && r2 == r3){
-            updausermoney(slotmoeny + usermoney,user.getIdLong());
-            channel.sendMessage("축하드립니다. 당첨되셨습니다.").queue();
-            channel.sendMessage("\n금액 = "+slotmoeny).queue();
+        if (r1 == r2 && r2 == r3) {
+            updateUserMoney(slotmoeny + userMoney,user.getIdLong());
             reset(id);
-        }else{
-            String[] s = new String[3];
-            s[0] = String.valueOf(r1);
-            s[1] = String.valueOf(r2);
-            s[2] = String.valueOf(r3);
-            channel.sendMessage("실패했습니다.").queue();
-            updausermoney(getUserMoney(user.getIdLong()) - usermoney,user.getIdLong());
-            slotmoeny += usermoney;
-            setserverslotmoney(id,slotmoeny);
         }
-
-
+        else {
+            updateUserMoney(getUserMoney(user.getIdLong()) - userMoney,user.getIdLong());
+            slotmoeny += userMoney;
+            setServerSlotMoney(id,slotmoeny);
+        }
     }
-
 
     private int getUserMoney(long userId) {
         try (final PreparedStatement preparedStatement = MySQLDatabase
@@ -153,7 +144,7 @@ public class Slotmachine implements ICommand {
         return 0;
     }
 
-    private void updausermoney(int money, long userId) {
+    private void updateUserMoney(int money, long userId) {
         try (final PreparedStatement preparedStatement = MySQLDatabase
                 .getConnection()
                 .prepareStatement("UPDATE user_info SET money = ? WHERE user_id = ?")) {
@@ -167,12 +158,11 @@ public class Slotmachine implements ICommand {
         }
     }
 
-
-    private void setserverslotmoney(long serverId, int slotmoney){
+    private void setServerSlotMoney(long serverId, int slotMoney) {
         try (final PreparedStatement preparedStatement = MySQLDatabase
                 .getConnection()
                 .prepareStatement("UPDATE guild_settings SET slotmoney = ? WHERE guild_id = ?")) {
-            preparedStatement.setString(1,String.valueOf(slotmoney));
+            preparedStatement.setString(1,String.valueOf(slotMoney));
             preparedStatement.setString(2, String.valueOf(serverId));
 
             preparedStatement.executeUpdate();
@@ -193,8 +183,7 @@ public class Slotmachine implements ICommand {
         }
     }
 
-
-    private int getserverslotmoney(long serverId){
+    private int getServerSlotMoney(long serverId){
         try (final PreparedStatement preparedStatement = MySQLDatabase
                 .getConnection()
                 .prepareStatement("SELECT slotmoney FROM guild_settings WHERE guild_id = ?")) {
@@ -214,11 +203,11 @@ public class Slotmachine implements ICommand {
 
     @Override
     public String getName() {
-        return "slot";
+        return "슬롯";
     }
 
     @Override
     public String getHelp() {
-        return "You can get money from this machine";
+        return "슬롯 머신을 사용할 수 있습니다.";
     }
 }

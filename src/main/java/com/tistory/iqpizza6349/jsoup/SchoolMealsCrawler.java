@@ -24,7 +24,7 @@ public class SchoolMealsCrawler implements Crawlers {
         int dayOfWeekInMonth = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH);
         int dayOfWeekValue = calendar.get(Calendar.DAY_OF_WEEK);
 
-        Element rows = document.select("tr").get(dayOfWeekInMonth+1);
+        Element rows = document.select("tr").get(dayOfWeekInMonth);
         Element col = rows.select("td").get(dayOfWeekValue-1);
         String editCol1 = col.text().replace("[조식]", "!");
         String editCol2 = editCol1.replace("[중식]", "@");

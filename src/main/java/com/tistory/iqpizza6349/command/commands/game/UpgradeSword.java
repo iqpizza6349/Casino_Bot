@@ -12,12 +12,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Random;
 
-public class UpgradetheSword implements ICommand {
+public class UpgradeSword implements ICommand {
 
     public HashMap<String, Integer> sword = new HashMap<>();
     public HashMap<String, String> SType = new HashMap<>();
 
-    public UpgradetheSword() {
+    public UpgradeSword() {
         sword.put("기본검", 100);
         sword.put("단도", 300);
         sword.put("장미칼", 500);
@@ -243,8 +243,6 @@ public class UpgradetheSword implements ICommand {
         }else if(swordType.equals("빅뱅")){
             channel.sendMessage(member.getName() + "님의 검이 이미 최대치입니다.").queue();
         }
-
-
     }
 
     private String getSwordType(long userId) {
@@ -306,12 +304,12 @@ public class UpgradetheSword implements ICommand {
             e.printStackTrace();
         }
     }
-    private void resetSword(String sword,long userId){
+    private void resetSword(String sword, long userId){
         try(final PreparedStatement preparedStatement = MySQLDatabase
                 .getConnection()
                 .prepareStatement("UPDATE user_info SET sword = ? WHERE user_id = ?")) {
-            preparedStatement.setString(1,sword);
-            preparedStatement.setString(2,String.valueOf(userId));
+            preparedStatement.setString(1, sword);
+            preparedStatement.setString(2, String.valueOf(userId));
 
             preparedStatement.executeUpdate();
 
@@ -323,11 +321,11 @@ public class UpgradetheSword implements ICommand {
 
     @Override
     public String getName() {
-        return "upgrade";
+        return "강화";
     }
 
     @Override
     public String getHelp() {
-        return "you can upgrade your sword and you can get money";
+        return "소지금을 사용하여 검을 강화할 수 있습니다.";
     }
 }

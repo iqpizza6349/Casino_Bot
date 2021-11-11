@@ -19,7 +19,7 @@ public class NamuWiki implements ICommand {
         TextChannel channel = ctx.getChannel();
 
         if (messages.isEmpty()) {
-            channel.sendMessage("no argument value").queue();
+            channel.sendMessage("인자값이 부족합니다.").queue();
             return;
         }
 
@@ -36,7 +36,7 @@ public class NamuWiki implements ICommand {
                 .handle(crawlerModule, "https://namu.wiki/w/" + urlKeyWord, null, "namuwiki");
 
         if (results == null) {
-            channel.sendMessage("no information, " + "https://namu.wiki/w/" + urlKeyWord).queue();
+            channel.sendMessage("정보를 불러올 수 없습니다. " + "https://namu.wiki/w/" + urlKeyWord).queue();
             return;
         }
 
@@ -52,18 +52,18 @@ public class NamuWiki implements ICommand {
 
             channel.sendMessageEmbeds(embedBuilder.build()).queue();
         } catch (IllegalArgumentException e) {
-            channel.sendMessage("too much information " + "https://namu.wiki/w/" + urlKeyWord).queue();
+            channel.sendMessage("정보가 너무 많습니다. 링크를 참조해주세요. " + "https://namu.wiki/w/" + urlKeyWord).queue();
         }
     }
 
     @Override
     public String getName() {
-        return "namuwiki";
+        return "나무위키";
     }
 
     @Override
     public String getHelp() {
-        return "Shows articles with keywords in NamuWiki\n" +
+        return "나무위키에 인자값을 키워드로 하여 검색합니다.\n" +
                 "Usage: namuwiki (keyword)";
     }
 }

@@ -27,7 +27,7 @@ public class HelpCommand implements ICommand {
             StringBuilder builder = new StringBuilder();
             String prefix = CustomPrefix.PREFIXES.get(ctx.getGuild().getIdLong());
 
-            builder.append("List of commands\n");
+            builder.append("명령어 리스트\n");
 
             manager.getCommandList().stream().map(ICommand::getName).forEach(
                     (it) -> builder.append('`').append(prefix).append(it).append("`\n")
@@ -49,12 +49,12 @@ public class HelpCommand implements ICommand {
 
     @Override
     public String getName() {
-        return "help";
+        return "도움말";
     }
 
     @Override
     public String getHelp() {
-        return "Shows the list with commands in the bot\n" +
+        return "봇이 사용할 수 있는 모든 명령어 리스트입니다.\n" +
                 "Usage: `" + Config.PREFIX + " [command]`";
     }
 

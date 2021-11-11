@@ -16,20 +16,20 @@ public class PingCommand implements ICommand {
 
         jda.getRestPing().queue(
                 (ping) -> ctx.getChannel()
-                        .sendMessageFormat("RESET ping: %sms\nWS ping: %sms", ping, jda.getGatewayPing()).queue()
+                        .sendMessageFormat("[ 리셋 핑 ]: %sms\n[ 웹 소켓 핑 ]: %sms", ping, jda.getGatewayPing()).queue()
         );
         final User self = ctx.getMessage().getAuthor();
         final TextChannel channel = ctx.getChannel();
-        channel.sendMessageFormat("<@%s>'s ping", self.getId()).queue();
+        channel.sendMessageFormat("<@%s>의 핑입니다.", self.getId()).queue();
     }
 
     @Override
     public String getName() {
-        return "ping";
+        return "핑";
     }
 
     @Override
     public String getHelp() {
-        return "shows the current ping from the bot to the discord server";
+        return "봇이 디스코드 서버까지 도달하는 데 소요하는 핑을 알려줍니다.";
     }
 }

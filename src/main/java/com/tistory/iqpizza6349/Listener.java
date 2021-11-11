@@ -67,31 +67,33 @@ public class Listener extends ListenerAdapter {
 
         if (FlipCoin.bettingUserMap.containsKey(channel.getGuild().getIdLong())) {
             if (FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).containsKey(user.getIdLong())) {
-                channel.sendMessage("You already bet to " + FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).get(user.getIdLong())).queue();
+                channel.sendMessage("이미 " + FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).get(user.getIdLong()) +
+                        "에 배팅하셨습니다.").queue();
             }
             else {
                 if (event.getReactionEmote().getName().equals(FlipCoin.head)) {
                     FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), true);
-                    channel.sendMessageFormat("%s, you bet to head", user).queue();
+                    channel.sendMessageFormat("%s, 앞면에 배팅하셨습니다.", user).queue();
                 }
                 else if (event.getReactionEmote().getName().equals(FlipCoin.tail)) {
                     FlipCoin.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), false);
-                    channel.sendMessageFormat("%s, you bet to tail", user).queue();
+                    channel.sendMessageFormat("%s, 뒷면에 배팅하셨습니다.", user).queue();
                 }
             }
         }
         else if (OddAndEven.bettingUserMap.containsKey(channel.getGuild().getIdLong())) {
             if (OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).containsKey(user.getIdLong())) {
-                channel.sendMessage("You already bet to " + OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).get(user.getIdLong())).queue();
+                channel.sendMessage("이미 " + OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).get(user.getIdLong()) +
+                        "에 배팅하셨습니다.").queue();
             }
             else {
                 if (event.getReactionEmote().getName().equals(OddAndEven.odd)) {
                     OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), true);
-                    channel.sendMessageFormat("%s, you bet to odd", user).queue();
+                    channel.sendMessageFormat("%s, 홀수에 배팅하셨습니다.", user).queue();
                 }
                 else if (event.getReactionEmote().getName().equals(OddAndEven.even)) {
                     OddAndEven.bettingUserMap.get(channel.getGuild().getIdLong()).put(user.getIdLong(), false);
-                    channel.sendMessageFormat("%s, you bet to even", user).queue();
+                    channel.sendMessageFormat("%s, 짝수에 배팅하셨습니다.", user).queue();
                 }
             }
         }

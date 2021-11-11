@@ -21,12 +21,12 @@ public class NowMoney implements ICommand {
 
     @Override
     public String getName() {
-        return "money";
+        return "소지금";
     }
 
     @Override
     public String getHelp() {
-        return "You can see your money";
+        return "현재 본인의 소지금을 알 수 있습니다.";
     }
 
     private int getUserMoney(long userId) {

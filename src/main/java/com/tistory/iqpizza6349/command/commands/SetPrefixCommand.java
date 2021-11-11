@@ -23,6 +23,7 @@ public class SetPrefixCommand implements ICommand {
 
         if (!member.hasPermission(Permission.MANAGE_SERVER)) {
             channel.sendMessage("You must have the Manage Server permission to use his command").queue();
+            channel.sendMessage("해당 명령어를 사용하기 위해서는 관리자 권한이 요구됩니다.").queue();
             return;
         }
 
@@ -35,6 +36,7 @@ public class SetPrefixCommand implements ICommand {
         updatePrefix(ctx.getGuild().getIdLong(), newPrefix);
 
         channel.sendMessageFormat("New prefix has been set to `%s`", newPrefix).queue();
+        channel.sendMessageFormat("`%s`로 prefix를 변경하였습니다.", newPrefix).queue();
     }
 
     @Override

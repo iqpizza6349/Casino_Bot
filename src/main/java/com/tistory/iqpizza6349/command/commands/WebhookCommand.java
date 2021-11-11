@@ -45,7 +45,6 @@ public class WebhookCommand implements ICommand {
                 .setContent(String.join(" ", strings));
 
         client.send(messageBuilder.build());
-
     }
 
     @Override

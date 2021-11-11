@@ -18,15 +18,15 @@ public class FlipCoin implements ICommand {
         TextChannel channel = ctx.getChannel();
 
         if (bettingUserMap.containsKey(channel.getGuild().getIdLong())) {
-            channel.sendMessage("Already playing game!").queue();
+            channel.sendMessage("이미 게임을 진행 중입니다.").queue();
             return;
         }
 
-        channel.sendMessage("Please choose which side you want to bet on for 20 seconds before starting to roll the coin.\n")
-                .append("Bet to Head: ")
+        channel.sendMessage("20초가 지나기 전에 앞면 혹은 뒷면에 배팅하여주세요.\n")
+                .append("앞면에 배팅하실려면 눌러주세요: ")
                 .append(head)
                 .append("\n")
-                .append("Bet to Tail: ")
+                .append("뒷면에 배팅하실려면 눌러주세요: ")
                 .append(tail)
                 .queue((msg) -> {
                     msg.addReaction(head).queue();
@@ -44,10 +44,10 @@ public class FlipCoin implements ICommand {
 
                     for (long user : bettingUserMap.get(channel.getGuild().getIdLong()).keySet()) {
                         if (bettingUserMap.get(channel.getGuild().getIdLong()).get(user) == coin) {
-                            channel.sendMessageFormat("<@%s>, you earn 500 Cash", user).queue();
+                            channel.sendMessageFormat("<@%s>, 축하드립니다. 맞추셨습니다.", user).queue();
                         }
                         else {
-                            channel.sendMessageFormat("<@%s>, you lose 500 Cash", user).queue();
+                            channel.sendMessageFormat("<@%s>, 안타깝습니다. 틀리셨습니다.", user).queue();
                         }
                     }
                     bettingUserMap.remove(channel.getGuild().getIdLong());
@@ -59,13 +59,12 @@ public class FlipCoin implements ICommand {
 
     @Override
     public String getName() {
-        return "flipcoin";
+        return "동전";
     }
 
     @Override
     public String getHelp() {
-        return "Start a coin flip game.\n" +
-                "You can place bets by tapping the emotion.\n" +
-                "(The bet is fixed at 500 cash.)";
+        return "동전을 굴립니다.\n" +
+                "이모티콘을 눌러 앞면 혹은 뒷면을 선택하실 수 있으십니다.";
     }
 }

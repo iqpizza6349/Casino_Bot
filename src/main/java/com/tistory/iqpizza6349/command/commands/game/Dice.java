@@ -17,11 +17,11 @@ public class Dice implements ICommand {
 
     @Override
     public String getName() {
-        return "dice";
+        return "주사위";
     }
 
     @Override
     public String getHelp() {
-        return "Roll the dice (1~6)";
+        return "(1~6) 숫자 중 하나를 랜덤으로 출력합니다.";
     }
 }

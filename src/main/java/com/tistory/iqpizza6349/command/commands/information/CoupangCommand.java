@@ -19,7 +19,7 @@ public class CoupangCommand implements ICommand {
         TextChannel channel = ctx.getChannel();
 
         if (messages.isEmpty()) {
-            channel.sendMessage("no argument value").queue();
+            channel.sendMessage("인자값이 부족합니다.").queue();
             return;
         }
 
@@ -36,7 +36,7 @@ public class CoupangCommand implements ICommand {
                 .handle(crawlerModule, "https://www.coupang.com/np/search?component=&q=" + urlKeyWord, null, "coupang");
 
         if (results == null) {
-            channel.sendMessage("no information, " + "https://www.coupang.com/np/search?component=&q=" + urlKeyWord).queue();
+            channel.sendMessage("정보를 불러오지 못하였습니다. " + "https://www.coupang.com/np/search?component=&q=" + urlKeyWord).queue();
             return;
         }
 
@@ -46,7 +46,6 @@ public class CoupangCommand implements ICommand {
         }
         String st = s.get(2);
 
-
         try {
             EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setTitle(keyWord, "https://www.coupang.com/np/search?component=&q=" + keyWord);
@@ -55,17 +54,17 @@ public class CoupangCommand implements ICommand {
             embedBuilder.setThumbnail(st);
             channel.sendMessageEmbeds(embedBuilder.build()).queue();
         } catch (IllegalArgumentException e) {
-            channel.sendMessage("too much information " + "https://www.coupang.com/np/search?component=&q=" + urlKeyWord).queue();
+            channel.sendMessage("정보가 너무 많습니다. 링크를 참조해주세요. " + "https://www.coupang.com/np/search?component=&q=" + urlKeyWord).queue();
         }
     }
 
     @Override
     public String getName() {
-        return "coupang";
+        return "쿠팡";
     }
 
     @Override
     public String getHelp() {
-        return "serch at coupang site if you want Items price";
+        return "물건을 쿠팡에서 검색 및 정보를 검색합니다.";
     }
 }

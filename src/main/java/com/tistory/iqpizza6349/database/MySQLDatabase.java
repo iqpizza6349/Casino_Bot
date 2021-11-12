@@ -25,16 +25,6 @@ public class MySQLDatabase {
                     "prefix VARCHAR(255) NOT NULL DEFAULT '" + defaultPrefix + "'" +
             ");");
 
-
-            statement.execute("CREATE TABLE IF NOT EXISTS music (" +
-                  "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
-                  "`guild_id` VARCHAR(20) NOT NULL," +
-                  "`current_song` VARCHAR(255)," +
-                  "`queue` TEXT," +
-                  "`repeat` BOOLEAN NOT NULL DEFAULT FALSE ," +
-                  "`count` INT(40) NOT NULL DEFAULT 0" +
-            ");");
-
             statement.execute("CREATE TABLE IF NOT EXISTS user_info (" +
                   "`id` INTEGER PRIMARY KEY AUTO_INCREMENT," +
                   "`user_id` VARCHAR(20) NOT NULL, " +

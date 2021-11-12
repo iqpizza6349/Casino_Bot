@@ -33,7 +33,6 @@ public class PlayerManager {
             final GuildMusicManager guildMusicManager = new GuildMusicManager(this.audioPlayerManager);
 
             guild.getAudioManager().setSendingHandler(guildMusicManager.getHandler());
-            guildMusicManager.scheduler.setGuildId(guild.getIdLong());
 
             return guildMusicManager;
         });
@@ -48,9 +47,9 @@ public class PlayerManager {
             public void trackLoaded(AudioTrack audioTrack) {
                 musicManager.scheduler.queue(audioTrack, textChannel.getGuild().getIdLong());
 
-                textChannel.sendMessage("`")
+                textChannel.sendMessage("`업로더: ")
                         .append(audioTrack.getInfo().author)
-                        .append(" `업로더 님의`")
+                        .append("`의 `")
                         .append(audioTrack.getInfo().title)
                         .append("`")
                         .append("를 큐에 추가하였습니다.")
@@ -64,9 +63,9 @@ public class PlayerManager {
                 for (final AudioTrack track : tracks) {
                     musicManager.scheduler.queue(track, textChannel.getGuild().getIdLong());
 
-                    textChannel.sendMessage("`")
+                    textChannel.sendMessage("`업로더: ")
                             .append(track.getInfo().author)
-                            .append(" `업로더 님의`")
+                            .append("`의 `")
                             .append(track.getInfo().title)
                             .append("`")
                             .append("를 큐에 추가하였습니다.")

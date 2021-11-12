@@ -45,9 +45,7 @@ public class LeaveCommand implements ICommand {
         final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(guild);
 
         musicManager.scheduler.repeating = false;
-        RepeatCommand.setRepeat(ctx.getGuild().getIdLong(), false);
         musicManager.scheduler.queue.clear();
-        StopCommand.clearQueue(guild.getIdLong());
         musicManager.player.stopTrack();
 
         final AudioManager audioManager = ctx.getGuild().getAudioManager();

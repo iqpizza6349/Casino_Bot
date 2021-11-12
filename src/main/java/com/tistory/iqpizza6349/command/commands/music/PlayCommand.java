@@ -1,9 +1,11 @@
 package com.tistory.iqpizza6349.command.commands.music;
 
+import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.tistory.iqpizza6349.Config;
 import com.tistory.iqpizza6349.command.CommandContext;
 import com.tistory.iqpizza6349.command.ICommand;
 import com.tistory.iqpizza6349.database.MySQLDatabase;
+import com.tistory.iqpizza6349.lavaplayer.GuildMusicManager;
 import com.tistory.iqpizza6349.lavaplayer.PlayerManager;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
@@ -14,12 +16,15 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.concurrent.BlockingQueue;
 
 public class PlayCommand implements ICommand {
 
     @Override
     public void handle(CommandContext ctx) {
         final TextChannel textChannel = ctx.getChannel();
+        final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(ctx.getGuild());
+        final BlockingQueue<AudioTrack> audioQueue = musicManager.scheduler.queue;
 
         if (ctx.getStrings().isEmpty()) {
             textChannel.sendMessage("Correct usage is `" + Config.PREFIX + "play <youtube link>`").queue();
@@ -49,7 +54,7 @@ public class PlayCommand implements ICommand {
             return;
         }
 
-        if (getQueueCount(ctx.getGuild().getIdLong()) >= 20) {
+        if (audioQueue.size() >= 20) {
             textChannel.sendMessage("The maximum music cue is 20.\n" +
                     "Please wait until the current song ends!").queue();
             return;
@@ -84,27 +89,4 @@ public class PlayCommand implements ICommand {
             return false;
         }
     }
-
-    public static int getQueueCount(long guildId) {
-        try (final PreparedStatement preparedStatement = MySQLDatabase
-                .getConnection()
-                .prepareStatement("SELECT count FROM music WHERE guild_id = ?")) {
-
-            preparedStatement.setString(1, String.valueOf(guildId));
-
-            try (final ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getInt("count");
-                }
-            }
-
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return 0;
-    }
-
-
-
 }

@@ -48,7 +48,6 @@ public class StopCommand implements ICommand {
 
         musicManager.scheduler.player.stopTrack();
         musicManager.scheduler.queue.clear();
-        clearQueue(ctx.getGuild().getIdLong());
 
         textChannel.sendMessage("The Player has been stopped and the queue has been cleared!").queue();
     }
@@ -62,22 +61,6 @@ public class StopCommand implements ICommand {
     public String getHelp() {
         return "Stops the current song and clear\n" +
                 "Usage: `" + Config.PREFIX + "stop`";
-    }
-
-    public static void clearQueue(long guildId) {
-        String stringGuild_id = String.valueOf(guildId);
-        try (final PreparedStatement insertCurrentSong = MySQLDatabase
-                .getConnection()
-                .prepareStatement("UPDATE music SET current_song = ?, queue = ?, count = ? WHERE guild_id = ?")) {
-            insertCurrentSong.setNull(1, Types.NULL);
-            insertCurrentSong.setNull(2, Types.NULL);
-            insertCurrentSong.setString(3, String.valueOf(0));
-            insertCurrentSong.setString(4, stringGuild_id);
-            insertCurrentSong.executeUpdate();
-
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
 }

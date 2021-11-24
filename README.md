@@ -21,3 +21,4 @@ Casino Bot wraps simply, so quite clean and re-usable code (except game packages
 <h2>Join your server</h2>
 <a href=https://discord.com/api/oauth2/authorize?client_id=908501763315888169&permissions=3165248&scope=bot>Join your Server (discord)</a>
 or <a href=https://koreanbots.dev/bots/908501763315888169>Join your Server (Korean List)</a>
+also <a href=https://top.gg/bot/908501763315888169>Join your Server (Top.gg)</a>
